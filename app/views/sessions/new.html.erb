@@ -1,0 +1,24 @@
+<h1>Sessions#new</h1>
+<p>Find me in app/views/sessions/new.html.erb</p>
+
+
+<h1>LogIn</h1>
+
+<%= form_tag login_user_path do %>
+<%= text_field_tag :email,"", placeholder:"Email" %>
+<%= password_field_tag :password,"", placeholder: "password" %>
+<%= submit_tag :"Log In" %> 
+<% end %> 
+
+<%= form_for @users do |f| %>
+<%=f.label :Email%>
+<%=f.text_field :email %>
+<%=f.label :password_confirmation%>
+<%=f.text_field :password_confirmation %>
+
+<%=f.label :Password %>
+<%=f.password_field :password  %>
+<%=f.submit :"Sign Up" %>
+<% end %> 
+
+
