@@ -1,3 +1,4 @@
+require 'bcrypt'
 class User < ActiveRecord::Base
 	has_many :groups
 	has_many :followers
@@ -11,5 +12,7 @@ class User < ActiveRecord::Base
 	validates_confirmation_of :password  
 	validates_presence_of :password, on: :create
 	validates_presence_of :username, on: :create
+	validates_uniqueness_of :username, on: :create
 	validates_presence_of :email, on: :create
+	validates_uniqueness_of :email, on: :create
 end

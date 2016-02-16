@@ -5,20 +5,29 @@
 <h1>LogIn</h1>
 
 <%= form_tag login_user_path do %>
-<%= text_field_tag :email,"", placeholder:"Email" %>
-<%= password_field_tag :password,"", placeholder: "password" %>
-<%= submit_tag :"Log In" %> 
+<div><%= text_field_tag :email,"", placeholder:"Email" %></div>
+<div><%= password_field_tag :password,"", placeholder: "password" %></div>
+<div><%= submit_tag :"Log In" %> </div>
 <% end %> 
 
-<%= form_for @users do |f| %>
-<%=f.label :Email%>
-<%=f.text_field :email %>
-<%=f.label :password_confirmation%>
-<%=f.text_field :password_confirmation %>
+<h1>Sign Up</h1>
 
-<%=f.label :Password %>
-<%=f.password_field :password  %>
-<%=f.submit :"Sign Up" %>
+<%= form_for @user do |f| %>
+<div><%=f.label :Email%></div>
+<div><%=f.text_field :email %></div>
+<div><%=f.label :Last_Name%></div>
+<div><%=f.text_field :lname %></div>
+<div><%=f.label :First_Name%></div>
+<div><%=f.text_field :fname %></div>
+<div><%=f.label :username%></div>
+<div><%=f.text_field :username %></div>
+<div><%=f.label :zipcode%></div>
+<div><%=f.text_field :zipcode %></div>
+<div><%=f.label :Password %></div>
+<div><%=f.password_field :password  %></div>
+<div><%=f.label :password_confirmation%></div>
+<div><%=f.password_field :password_confirmation %></div>
+<div><%=f.submit :"Sign Up" %></div>
 <% end %> 
 
 
