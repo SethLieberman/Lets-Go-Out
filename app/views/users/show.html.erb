@@ -15,10 +15,15 @@
 		
 			<%= form_for Post.new, url: '/newpost', html: {method: :post} do |f| %>
 			<!-- title of post -->
+			<%= content_tag :div, id: "title" do %>
 				<%= f.text_field :title,required: true, placeholder: "title", id: "title-input", class: "post-input" %>
+				<% end %>
 				<!-- content of post -->
+				<%= content_tag :div, id: "content" do %>
 				<%= f.text_area :content, required: true, placeholder: "content", id: "content-input", class: "post-input" %>
+
 				<%= f.submit :Post, id: "post-submit" %>
+				<% end %>
 			<% end %>
 		<% end %>
 <!-- Display the posts -->
@@ -26,10 +31,29 @@
 	<% @posts.each do |post| %>
 		<%= content_tag :div, class: "post-card" do %>
 			<%= content_tag :div, class: "post-card" do %>
-				<%= content_tag :p, "#{post.title}", class: "post-card-comment-count" %>
-				<%= content_tag :p, "#{post.content}", class: "post-card-comment-count" %>
-				<%= content_tag :p, "posted by #{@user.username}" %>
+				<%= content_tag :p, "#{post.title}"%>
+				<%= content_tag :p, "#{post.content}" %>
+				<%= content_tag :p, "posted by #{post.user.username} and created #{distance_of_time_in_words(post.created_at, Time.now)} ago" %>
+				
+					<%= link_to "delete", post_path(post), {:method => :delete} %>
+				
+
+	
+	
+		<!-- form for user to comment on posts -->
+
+	<%= form_for Comment.new, url: post_comments_path(post), html: {method: :post} do |f| %>
+		<%=f.label :comment %>
+		<%=f.text_area :content, id: "content-input", required: true %>
+		<%=f.submit :Post, id: "post-submit" %>
+		
+		<!-- displaying comments -->
+				<% @comments.each do |comment| %>
+					<%= content_tag :p, "#{comment.content}" %>
+					<%= content_tag :p, "comment by #{comment.user.username} and created #{distance_of_time_in_words(comment.created_at, Time.now)} ago" %>
+				<% end %>
 			<% end %>
 		<% end %>
-	<% end %>
+	<% end %>			
+<% end %>
 

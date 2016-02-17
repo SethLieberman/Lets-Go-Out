@@ -20,11 +20,14 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
     @users = User.all
     @posts = Post.all
+    @comments = Comment.all
+    @posts = @posts.sort_by {|post| post.created_at }.reverse
   end
 
   def index
   	@users = User.all
     @posts = Post.all
+    @comments = Comment.all
   end
 
   def destroy

@@ -1,65 +1,12 @@
   Rails.application.routes.draw do
-  # get 'groups/new'
-
-  # get 'groups/edit'
-
-  # get 'groups/show'
-
-  # get 'groups/index'
-
-  # get 'followers/new'
-
-  # get 'followers/edit'
-
-  # get 'followers/show'
-
-  # get 'followers/index'
-
-  # get 'places/new'
-
-  # get 'places/edit'
-
-  # get 'places/show'
-
-  # get 'places/index'
-
-  # get 'comments/new'
-
-  # get 'comments/edit'
-
-  # get 'comments/show'
-
-  # get 'comments/index'
-
-  # get 'posts/new'
-
-  # get 'posts/edit'
-
-  # get 'posts/show'
-
-  # get 'posts/index'
-
-  # get 'sessions/new'
-
-  # get 'admins/new'
-
-  # get 'admins/edit'
-
-  # get 'admins/show'
-
-  # get 'admins/index'
-
-  # get 'users/new'
-
-  # get 'users/edit'
-
-  # get 'users/show'
-
-  # get 'users/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-resources :users, :admins
+ resources :users
+
+  resources :posts do
+  resources :comments
+  end
   # You can have the root of your site routed with "root"
   root 'sessions#new'
 
@@ -68,6 +15,7 @@ resources :users, :admins
   delete 'signout' => 'sessions#destroy', as: :logout_user
   get 'signout' => 'sessions#destroy', as: :get_logout_user 
   post '/newpost' => 'posts#create'
+  post '/newcomment' => 'comments#create'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
