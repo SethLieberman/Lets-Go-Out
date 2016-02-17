@@ -14,19 +14,19 @@
 
 <%= form_for @user do |f| %>
 <div><%=f.label :Email%></div>
-<div><%=f.text_field :email %></div>
+<div><%=f.text_field :email, required: true %></div>
 <div><%=f.label :Last_Name%></div>
-<div><%=f.text_field :lname %></div>
+<div><%=f.text_field :lname, required: true %></div>
 <div><%=f.label :First_Name%></div>
-<div><%=f.text_field :fname %></div>
+<div><%=f.text_field :fname, required: true %></div>
 <div><%=f.label :username%></div>
-<div><%=f.text_field :username %></div>
+<div><%=f.text_field :username, required: true %></div>
 <div><%=f.label :zipcode%></div>
-<div><%=f.text_field :zipcode %></div>
+<div><%=f.text_field :zipcode, required: true %></div>
 <div><%=f.label :Password %></div>
-<div><%=f.password_field :password  %></div>
+<div><%=f.password_field :password, required: true  %></div>
 <div><%=f.label :password_confirmation%></div>
-<div><%=f.password_field :password_confirmation %></div>
+<div><%=f.password_field :password_confirmation, required: true %></div>
 <div><%=f.submit :"Sign Up" %></div>
 <% end %> 
 

@@ -67,7 +67,7 @@ resources :users, :admins
   post 'post_login' => 'sessions#create', as: :login_user
   delete 'signout' => 'sessions#destroy', as: :logout_user
   get 'signout' => 'sessions#destroy', as: :get_logout_user 
-
+  post '/newpost' => 'posts#create'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

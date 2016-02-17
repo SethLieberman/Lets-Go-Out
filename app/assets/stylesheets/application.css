@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+.post-card{
+	border:solid black 1px;
+}
