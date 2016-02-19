@@ -2,9 +2,12 @@
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  
   resources :users do
-    resources :posts do
-      resources :comments
+    resources :groups do
+      resources :posts do
+        resources :comments
+     end
     end
   end
   # You can have the root of your site routed with "root"
@@ -16,7 +19,7 @@
   get 'signout' => 'sessions#destroy', as: :get_logout_user 
   post '/newpost' => 'posts#create'
   post '/newcomment' => 'comments#create'
-  
+  post '/newgroup' => 'groups#create'
 
   # resources :followers, :only => [:create, :destroy]
   post '/update_follow_status/:id' => 'users#update_follow_status', as: :update_follow_status

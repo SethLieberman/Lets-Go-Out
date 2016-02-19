@@ -1,6 +1,7 @@
 <h1>Sessions#new</h1>
 <p>Find me in app/views/sessions/new.html.erb</p>
 
+<%= link_to "Signout", logout_user_path, method: :delete %>
 <% if !@current_user %>
 <h1>LogIn</h1>
 

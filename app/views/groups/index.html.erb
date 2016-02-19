@@ -1,2 +1,15 @@
 <h1>Groups#index</h1>
 <p>Find me in app/views/groups/index.html.erb</p>
+
+<%= form_for Group.new, url: '/newgroup', html: {method: :post} do |f| %>
+			<!-- creating of group -->
+			<%= content_tag :div, id: "title" do %>
+				<%= f.text_field :title,required: true, placeholder: "title", id: "title-group", class: "" %>
+				<%= f.submit :Submit, id: "group-submit" %>
+				<% end %>
+			<% end %>
+
+<!-- List your groups -->
+		<% @groups.each do |g| %>
+			<div><%= link_to "#{g.title}", user_group_path(@user.id, g.id)%></div>
+		<% end %>
