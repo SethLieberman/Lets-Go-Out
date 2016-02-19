@@ -1,2 +1,8 @@
 <h1>Groups#edit</h1>
 <p>Find me in app/views/groups/edit.html.erb</p>
+
+
+<%= form_for @group, url: user_group_path(@current_user.id, @group.id), method: :put do |f| %>
+<%= f.text_field :title%>
+<%= f.submit :change%>
+<%end%>
