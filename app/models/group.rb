@@ -1,7 +1,9 @@
 class Group < ActiveRecord::Base
-	has_many :users
-	has_many :posts
-	has_many :admins
-
-	belongs_to :user
+	
+	has_many :places, through: :meetup_places
+	has_many :places
+	
+	has_many :users, through: :user_groups
+	has_many :user_groups
+	
 end

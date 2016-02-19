@@ -1,2 +1,53 @@
 <h1>Posts#index</h1>
 <p>Find me in app/views/posts/index.html.erb</p>
+
+
+<!-- creates a new post -->
+
+<%= content_tag :div, id: "postform" do %>
+		
+			<%= form_for Post.new, url: '/newpost', html: {method: :post} do |f| %>
+			<!-- title of post -->
+			<%= content_tag :div, id: "title" do %>
+				<%= f.text_field :title,required: true, placeholder: "title", id: "title-input", class: "post-input" %>
+				<% end %>
+				<!-- content of post -->
+				<%= content_tag :div, id: "content" do %>
+				<%= f.text_area :content, required: true, placeholder: "content", id: "content-input", class: "post-input" %>
+
+				<%= f.submit :Post, id: "post-submit" %>
+				<% end %>
+			<% end %>
+		<% end %>
+<!-- Display the posts -->
+
+	<% @posts.each do |post| %>
+		<%= content_tag :div, class: "post-card" do %>
+			<%= content_tag :div, class: "post-card" do %>
+				<%= content_tag :p, "#{post.title} | #{post.id}"%>
+				<%= content_tag :p, "#{post.content}" %>
+				<%= content_tag :p, "posted by #{post.user.username} and created #{distance_of_time_in_words(post.created_at, Time.now)} ago" %>
+				
+					<%= link_to "delete", user_post_path(@current_user, post), {:method => :delete} %>
+				
+
+	
+	
+		<!-- form for user to comment on posts -->
+		<hr>
+	<%= form_for Comment.new, url: user_post_comments_path(@current_user, post), html: {method: :post} do |f| %>
+		<%=f.label :comment %>
+		<%=f.text_area :content, id: "content-input", required: true %>
+		<%=f.submit :Post, id: "post-submit" %>
+
+		
+		<!-- displaying comments -->
+				
+				<% post.comments.each do |comment| %>
+					<%= content_tag :p, "#{comment.content}" %>
+					<%= content_tag :p, "comment by #{comment.user.username} and created #{distance_of_time_in_words(comment.created_at, Time.now)} ago" %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>			
+<% end %>

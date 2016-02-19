@@ -1,7 +1,7 @@
 <h1>Sessions#new</h1>
 <p>Find me in app/views/sessions/new.html.erb</p>
 
-
+<% if !@current_user %>
 <h1>LogIn</h1>
 
 <%= form_tag login_user_path do %>
@@ -29,5 +29,9 @@
 <div><%=f.password_field :password_confirmation, required: true %></div>
 <div><%=f.submit :"Sign Up" %></div>
 <% end %> 
+
+<% else%>
+<h1>Logged In!</h1>
+<% end %>
 
 

@@ -14,10 +14,11 @@ class CommentsController < ApplicationController
   end
 
   def show
+
   end
 
   def index
-
+    @comments = Comment.all
   end
 
   def destroy

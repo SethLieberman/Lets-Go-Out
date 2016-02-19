@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216173403) do
+ActiveRecord::Schema.define(version: 20160218201916) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username"
@@ -32,15 +32,30 @@ ActiveRecord::Schema.define(version: 20160216173403) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "followers", force: :cascade do |t|
+  create_table "fav_places", force: :cascade do |t|
+    t.integer  "place_id"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "followers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "user_friend_id"
+  end
+
   create_table "groups", force: :cascade do |t|
     t.string   "title"
     t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "meetup_places", force: :cascade do |t|
+    t.integer  "group_id"
+    t.integer  "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -57,6 +72,13 @@ ActiveRecord::Schema.define(version: 20160216173403) do
     t.string   "title"
     t.string   "content"
     t.string   "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_groups", force: :cascade do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

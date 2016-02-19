@@ -6,7 +6,6 @@ class Admin < ActiveRecord::Base
 	has_many :comments
 	belongs_to :groups
 
-	has_many :places, through: :groups
 
 	has_secure_password
 	validates_confirmation_of :password  

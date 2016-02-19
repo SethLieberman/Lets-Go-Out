@@ -1,2 +1,34 @@
 <h1>Users#index</h1>
 <p>Find me in app/views/users/index.html.erb</p>
+
+<h2>Here is a list of all of our users</h2>
+			<!-- displaying all users -->
+			
+			<% @users.each do |u| %>
+				<div><%= u.username %></div>
+				<% if @user.user_friends.include? u%>
+					<%= link_to "Unfollow", update_follow_status_path(u.id), :method => :post%>
+
+				<% else %>
+					<%= link_to "Follow", update_follow_status_path(u.id), :method => :post%>
+
+				<% end %>
+
+			<!-- to add followers to group -->
+
+				
+					 <!-- link_to "Leave Group", update_group_status_path(:id => u.id), :method => :post -->
+
+				
+	
+		
+			<% end %>
+
+		<!-- display the people you follow -->
+
+		<h3>People you are following</h3>
+			<% @user.user_friends.each do |u| %>
+				<div><%= u.username %></div>
+			<% end %>
+
+

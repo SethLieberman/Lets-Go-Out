@@ -14,17 +14,19 @@ class PostsController < ApplicationController
 	def show
 		current_user
 		@post = Post.find(params[:id])
+		@comment = Comment.all
 	end
 
 	def index
-		@posts = Post.all
-		@comments = Comment.all
+		current_user
+		@posts = current_user.posts.sort_by {|post| post.created_at }.reverse
+		
 	end
 
 	def destroy
 		@post = Post.find(params[:id])
 		@post.destroy
-		redirect_to user_path(@current_user)
+		redirect_to user_path(current_user)
 	end
 
 
