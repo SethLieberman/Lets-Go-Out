@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
 # to follow users
   def update_follow_status
-    @user_to_follow = User.find(params[:id])
+    @user_to_follow = User.find(params[:user_id])
     if current_user.user_friends.include? @user_to_follow
       current_user.user_friends.destroy @user_to_follow
 
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
       current_user.user_friends.push @user_to_follow
 
     end
-    redirect_to users_path current_user
+    redirect_to users_path
   end
 
 # to add followers to groups
