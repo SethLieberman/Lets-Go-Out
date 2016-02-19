@@ -26,10 +26,10 @@ class UsersController < ApplicationController
   end
 
   def index
-    @user = User.find(current_user)
+    @user = current_user
     @users = User.all
-    @posts = Post.all
-    @comments = Comment.all
+    # @posts = Post.all
+    # @comments = Comment.all
   end
 
   def destroy
