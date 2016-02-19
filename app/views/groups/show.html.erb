@@ -40,7 +40,7 @@
 	
 		<!-- form for user to comment on posts -->
 		<hr>
-	<%= form_for Comment.new, url: newcomment_path(@current_user, post), html: {method: :post} do |f| %>
+	<%= form_for Comment.new, url: user_group_post_comments_path(@current_user.id, @group.id, post.id), html: {method: :post} do |f| %>
 		<%=f.label :comment %>
 		<%=f.text_area :content, id: "content-input", required: true %>
 		<%=f.submit :Post, id: "post-submit" %>

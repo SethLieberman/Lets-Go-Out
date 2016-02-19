@@ -19,7 +19,7 @@ class GroupsController < ApplicationController
 	def show
 		@group = Group.find(params[:id])
 		@user = current_user
-		@posts = current_user.posts.sort_by {|post| post.created_at }.reverse
+		@posts = @group.posts.sort_by {|post| post.created_at }.reverse
 		@comment = Comment.all
 	end
 

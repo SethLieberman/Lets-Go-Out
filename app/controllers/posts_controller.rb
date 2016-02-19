@@ -9,7 +9,9 @@ class PostsController < ApplicationController
 	def create
 		@user = User.find(params[:user_id])
 		@group = Group.find(params[:group_id])
-		@post = Post.create(post_params) 
+		@post = Post.create(post_params)
+		@user.posts.push @post 
+		@group.posts.push @post 
 		redirect_to user_group_path(@user.id, @group.id)
 	end
 
@@ -36,7 +38,5 @@ class PostsController < ApplicationController
 
 	def post_params
 		post_params = params.require(:post).permit(:title, :content)
-		post_params[:user_id] = current_user.id
-		# post_params
 	end
 end
