@@ -9,7 +9,7 @@
 
 <%= content_tag :div, id: "postform" do %>
 		
-			<%= form_for Post.new, url: '/newpost', html: {method: :post} do |f| %>
+			<%= form_for Post.new, url: user_group_posts_path(@current_user.id, @group.id), html: {method: :post} do |f| %>
 
 			<!-- title of post -->
 			<%= content_tag :div, id: "title" do %>

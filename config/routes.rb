@@ -22,7 +22,7 @@
   post '/newgroup' => 'groups#create'
 
   # resources :followers, :only => [:create, :destroy]
-  post '/update_follow_status/:id' => 'users#update_follow_status', as: :update_follow_status
+  post '/update_follow_status' => 'users#update_follow_status', as: :update_follow_status
 
   post '/update_group_status/:id' => 'users#update_group_status', as: :update_group_status
 
