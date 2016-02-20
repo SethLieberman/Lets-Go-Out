@@ -14,7 +14,7 @@ class PlacesController < ApplicationController
 		if params[:cuisine]
 			query = params[:cuisine]
 		else
-			query = "food"
+			query = "restaurant"
 
 		end
 		@results = client.search('Philadelphia', { term: query}, sort:[2], offset: 20)
@@ -22,8 +22,12 @@ class PlacesController < ApplicationController
 
 	end
 
-	def index
-
+	def follow_place
 		
+
+	end
+
+
+	def index
 	end
 end
