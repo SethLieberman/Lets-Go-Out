@@ -1,6 +1,6 @@
 <h1>Groups#index</h1>
 <p>Find me in app/views/groups/index.html.erb</p>
-
+<%= link_to "My Page", user_path(@user.id) %>
 <%= form_for Group.new, url: '/newgroup', html: {method: :post} do |f| %>
 			<!-- creating of group -->
 			<%= content_tag :div, id: "title" do %>
