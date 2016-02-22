@@ -17,14 +17,18 @@ class PlacesController < ApplicationController
 			query = "restaurant"
 
 		end
-		@results = client.search('Philadelphia', { term: query}, sort:[2], offset: 20)
+		@results = client.search('Philadelphia', { term: query}, sort:[2], offset:[20])
 
+	end
+
+	def place_search
+		# set up search for places on yelp
+		# this needs to pass the queary from above
 
 	end
 
 	def follow_place
 		
-
 	end
 
 

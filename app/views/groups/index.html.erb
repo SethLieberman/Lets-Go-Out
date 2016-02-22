@@ -1,6 +1,8 @@
 <h1>Groups#index</h1>
 <p>Find me in app/views/groups/index.html.erb</p>
 <%= link_to "My Page", user_path(@user.id) %>
+
+<!-- form for creating new group -->
 <%= form_for Group.new, url: '/newgroup', html: {method: :post} do |f| %>
 			<!-- creating of group -->
 			<%= content_tag :div, id: "create-group" do %>
@@ -12,7 +14,7 @@
 				<% end %>
 		
 <!-- List your groups -->
-	<% if @current_user %>
+	<% if @current_user.id %>
 		<% @groups.each do |g| %>
 			<div><%= link_to "#{g.title}", user_group_path(@user.id, g.id)%></div>
 		<% end %>
