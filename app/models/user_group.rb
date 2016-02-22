@@ -1,5 +1,6 @@
 class UserGroup < ActiveRecord::Base
 	belongs_to :user
-	belongs_to :group
+	belongs_to :shared_group, class_name: "Group"
 
+	
 end

@@ -35,7 +35,7 @@
 				<%= content_tag :p, "#{post.content}" %>
 				<%= content_tag :p, "posted by #{post.user.username} and created #{distance_of_time_in_words(post.created_at, Time.now)} ago" %>
 				
-					<%= link_to "delete", user_group_path(@current_user, post), {:method => :delete} %>
+					<%= link_to "delete", user_group_post_path(@current_user.id, @group.id ,post.id), {:method => :delete} %>
 				
 
 	
@@ -53,6 +53,8 @@
 				<% post.comments.each do |comment| %>
 					<%= content_tag :p, "#{comment.content}" %>
 					<%= content_tag :p, "comment by #{comment.user.username} and created #{distance_of_time_in_words(comment.created_at, Time.now)} ago" %>
+
+					<%= link_to "delete", user_group_post_comment_path(@current_user.id, @group.id ,post.id, comment.id), {:method => :delete} %>
 				<% end %>
 			<% end %>
 		<% end %>			

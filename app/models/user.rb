@@ -1,7 +1,9 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-	has_many :groups, through: :user_groups
+	has_many :groups
+
+	has_many :shared_groups, through: :user_groups
 	has_many :user_groups
 
 	has_many :user_friends, through: :followers
@@ -13,10 +15,9 @@ class User < ActiveRecord::Base
 	has_many :posts
 	has_many :comments
 
-
-# def follow!(followed)
-#   followers.create!(:followed_id => followed.id)
-# end
+	# this is to invite users to groups
+	has_many :invitations, :class_name => "Invite", :foreign_key => 'recipient_id'
+	has_many :sent_invites, :class_name => "Invite", :foreign_key => 'sender_id'
 
 	
 

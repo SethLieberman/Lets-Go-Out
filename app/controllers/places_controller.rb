@@ -28,7 +28,7 @@ class PlacesController < ApplicationController
 	end
 
 	def follow_place
-		
+		# when user clicks add place to user page
 	end
 
 

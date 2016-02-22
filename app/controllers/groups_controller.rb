@@ -4,13 +4,14 @@ class GroupsController < ApplicationController
 
 	def create
 		@group = Group.create(group_params) 
+		@current_user.groups.push
 		redirect_to user_groups_path(@current_user.id)
 	end
 
 	def edit
 		@group = Group.find(params[:id])
 	end
-	
+
 	def update
 		@group = Group.find(params[:id])
 		@group.update_attributes(group_params)
@@ -30,9 +31,10 @@ class GroupsController < ApplicationController
 	end
 
 	def destroy
-		@post = Post.find(params[:id])
-		@post.destroy
-		redirect_to user_group_path(@current_user.id, @group.id)
+		@user = User.find(params[:user_id])
+		@group = Group.find(params[:id])
+		@group.destroy
+		redirect_to user_group_path(@user.id, @group.id)
 	end
 
 	private 

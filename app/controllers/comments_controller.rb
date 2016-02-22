@@ -23,12 +23,18 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:user_id])
+    @group = Group.find(params[:group_id])
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    redirect_to user_group_path(@user, @group)
   end
 
   private
 
   def comment_params
-     params.require(:comment).permit(:content)
-    
-  end
+   params.require(:comment).permit(:content)
+
+ end
 end
