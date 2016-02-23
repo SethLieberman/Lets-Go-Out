@@ -11,12 +11,14 @@
 					<%= f.text_field :title,required: true, placeholder: "title", id: "title-group", class: "" %>
 					<%= f.submit :Submit, id: "group-submit" %>
 					<% end %>
-						<%= link_to "delete", user_group_path(@user.id, @group.id), {:method => :delete} %>
 				<% end %>
 		
 <!-- List your groups -->
 	<% if @current_user.id %>
 		<% @current_user.groups.each do |g| %>
-			<div><%= link_to "#{g.title}", user_group_path(@user.id, g.id)%></div>
+			<div><%= link_to "#{g.title}", user_group_path(@user.id, g.id)%>
+			<%= link_to "Delete Group", user_group_path(@current_user.id, g.id), {:method => :delete} %>
+			
+			</div>
 		<% end %>
 	<% end %>

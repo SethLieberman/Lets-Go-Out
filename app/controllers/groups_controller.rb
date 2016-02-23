@@ -34,7 +34,7 @@ class GroupsController < ApplicationController
 		@user = User.find(params[:user_id])
 		@group = Group.find(params[:id])
 		@group.destroy
-		redirect_to user_group_path(@user.id, @group.id)
+		redirect_to user_groups_path(@user.id, @group.id)
 	end
 
 	private 
