@@ -1,4 +1,8 @@
 class SessionsController < ApplicationController
+  
+  include Minimalist::Sessions
+  skip_before_filter :authorization_required, only: [:new, :create]
+
   def new
     @user = User.new
   end

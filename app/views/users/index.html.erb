@@ -6,13 +6,16 @@
 			<!-- displaying all users -->
 			
 			<% @users.each do |u| %>
+				<% if u!= @user%>
 				<div><%= u.username %></div>
+
 				<% if @user.user_friends.include? u%>
 					<%= link_to "Unfollow", update_follow_status_path({user_id: u.id}), :method => :post%>
 
 				<% else %>
 					<%= link_to "Follow", update_follow_status_path({user_id: u.id}), :method => :post%>
 
+				<% end %>
 				<% end %>
 
 			<!-- to add followers to group -->
@@ -29,6 +32,7 @@
 
 		<h3>People you are following</h3>
 			<% @user.user_friends.each do |u| %>
-				<div><%= u.username %></div>
+			<!-- links to othe user's page -->
+				<div><%= link_to"#{u.username}", user_path(u.id)%></div>
 			<% end %>
 

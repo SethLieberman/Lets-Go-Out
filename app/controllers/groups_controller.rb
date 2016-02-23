@@ -19,15 +19,22 @@ class GroupsController < ApplicationController
 	end
 
 	def show
-		@group = Group.find(params[:id])
-		@user = current_user
-		@posts = @group.posts.sort_by {|post| post.created_at }.reverse
-		@comment = Comment.all
+		# current_user
+		# to show user that is logged in
+		# if current_user == User.find(params[:user_id])
+			@group = Group.find(params[:id])
+			@user = User.find(params[:user_id])
+			@posts = @group.posts.sort_by {|post| post.created_at }.reverse
+			# @comment = Comment.all
+		# else
+			# to show other user's page
+			# @user = User.find(params[:user_id])
+		# end
 	end
 
 	def index
-		@user = User.find(current_user.id)
-		@groups = Group.all
+		@user = User.find(params[:user_id])
+		@groups = @user.groups
 	end
 
 	def destroy
