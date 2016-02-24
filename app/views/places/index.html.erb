@@ -1,7 +1,10 @@
 <h2>Top Places to Eat!</h2>
 <ol>
 
+
+<%= content_tag :div, class: "yelp" do %>
 <% @results.businesses.each do |b| %>
+
 	<li><h1><%= b.name %></h1></li>
 	<img src="<%= b.image_url %>" alt="">
 	<p><%= b.location.address.first %></p>
@@ -12,3 +15,6 @@
 	 <!-- link_to "Add to my list", follow_place_status_path(@place.id), :method => :post%> -->
 <% end %>
 </ol>
+<% end %>
+<div id="map">
+</div>

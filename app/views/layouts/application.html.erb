@@ -1,36 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Lets Go Out</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+	<title>Lets Go Out</title>
+	<script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js">
+	</script>
+
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAVAG_6hvZMgn6Rx81VQCg5LH-Hubv-K1A&libraries=places">
+	</script>
+
+	<script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox_packed.js' type='text/javascript'>
+	</script> <!-- only if you need custom infoboxes -->
+
+	 <script>markers = handler.addMarkers(<%=raw @hash.to_json %>);	</script>
+	 
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
 
 	<% if @current_user %>
 
-		<%= content_tag :div, id: "navbar" do %>
-			
-				<%= link_to "Hello #{@current_user.username}", user_path(@current_user.id), class:"nav" %>
+	<%= content_tag :div, id: "navbar" do %>
 
-				<%= link_to "Other Users", users_path, class:"nav" %>
+	<%= link_to "Hello #{@current_user.username}", user_path(@current_user.id), class:"nav" %>
 
-			<% if @current_user %>	
+	<%= link_to "Other Users", users_path, class:"nav" %>
 
-				<%= link_to "#{@current_user.username}'s Groups", user_groups_path(@current_user.id), class:"nav" %>
-			<%end%>
+	<% if @current_user %>	
 
-				<%= link_to "Search Places", places_path, class:"nav"%>
+	<%= link_to "#{@current_user.username}'s Groups", user_groups_path(@current_user.id), class:"nav" %>
+	<%end%>
+
+	<%= link_to "Search Places", places_path, class:"nav"%>
 
 
-				<%= link_to "Signout", logout_user_path, method: :delete, class:"nav" %>
+	<%= link_to "Signout", logout_user_path, method: :delete, class:"nav" %>
 
-			<% end %>
-				
 	<% end %>
 
-<%= yield %>
-<%= flash[:alert] if flash[:alert] %>
+	<% end %>
+
+	<%= yield %>
+	<%= flash[:alert] if flash[:alert] %>
 </body>
 </html>

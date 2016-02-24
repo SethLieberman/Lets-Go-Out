@@ -26,13 +26,15 @@ gem 'sendgrid-ruby'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'awesome_print'
+gem 'underscore-rails'
+gem 'gmaps4rails'
 gem 'google_places'
 gem 'geocoder'
 gem 'paperclip'
 # Use Unicorn as the app server
 gem 'yelp', require: 'yelp'
 # gem 'unicorn'
-
+gem 'pry'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
