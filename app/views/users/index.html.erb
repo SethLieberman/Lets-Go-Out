@@ -1,8 +1,8 @@
 
 <%= content_tag :div, class: "show-users" do %>
 
-<%= content_tag :div, class: "all-users" do %>
-<h2>All of the Users</h2>
+	<%= content_tag :div, class: "all-users" do %>
+	<h2>All of the Users</h2>
 			<!-- displaying all users -->
 			
 			<% @users.each do |u| %>
@@ -25,7 +25,7 @@
 
 				
 	
-<% end %>		
+	<% end %>		
 			<% end %>
 
 		<!-- display the people you follow -->
@@ -34,12 +34,13 @@
 			<h3>People you are following</h3>
 			
 				<% @user.user_friends.each do |u| %>
-<%= content_tag :div, class: "eusers" do %>
+					<%= content_tag :div, class: "eusers" do %>
 				<!-- avatar for each user -->
-				<div><%= image_tag @user.avatar.url(:thumb) %></div>
+				<div><%= image_tag u.avatar.url(:thumb) %></div>
+
 				<!-- links to othe user's page -->
 					<div><%= link_to"#{u.username}", user_path(u.id)%></div>
 				<% end %>
-	<% end %>
+			<% end %>
 	<% end %>
 <% end %>
