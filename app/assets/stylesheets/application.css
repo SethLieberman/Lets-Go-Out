@@ -17,3 +17,35 @@
 .post-card{
 	border:solid black 1px;
 }
+
+.title{
+	top: 70px;
+	font-size: 6vw;
+}
+
+#navbar{
+	background: black;
+	position: fixed;
+	top:0;
+	width: 100%;
+	height:70px;
+	z-index: 10;
+	text-align: center;
+}
+
+.nav{
+	text-decoration: none;
+	color: white;
+	list-style-type: none;	
+	margin: 0;
+	padding: 0;
+	display: inline;
+	width: 600px;
+	padding-left: 50px;
+	padding-right: 50px;
+	font-size: 2vw;
+	position: relative;
+	top: 30%;
+	transform:translateY(-10%);
+}
+

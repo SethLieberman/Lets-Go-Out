@@ -1,7 +1,6 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-	include Minimalist::Authentication
 	has_many :groups
 
 	has_many :shared_groups, through: :user_groups

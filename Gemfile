@@ -28,7 +28,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'awesome_print'
 gem 'google_places'
 gem 'geocoder'
-gem 'minimalist_authentication'
+
 # Use Unicorn as the app server
 gem 'yelp', require: 'yelp'
 # gem 'unicorn'
