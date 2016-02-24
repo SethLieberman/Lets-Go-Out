@@ -1,5 +1,6 @@
 
-
+ <% if @current_user != @user%>
 
 <%= content_tag :p, "#{@user.username}'s Page", class:"userpage" %>
 
+ <% end %>

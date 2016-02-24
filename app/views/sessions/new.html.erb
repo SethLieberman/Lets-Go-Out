@@ -1,3 +1,6 @@
+<!-- this page you can sign up or log in -->
+
+<%= content_tag :div, id: "landing" do %>
 
 <% if @current_user %>
 <%= link_to "Signout", logout_user_path, method: :delete %>
@@ -23,7 +26,7 @@
 <div><%=f.label :First_Name%></div>
 <div><%=f.text_field :fname, required: true %></div>
 <div><%=f.label :username%></div>
-<div><%=f.text_field :username, required: true %></div>
+<div><%=f.text_field :username, maxlength: 10, required: true %></div>
 <div><%=f.label :zipcode%></div>
 <div><%=f.text_field :zipcode, required: true %></div>
 <div><%=f.label :Password %></div>
@@ -36,5 +39,5 @@
 <% else%>
 <h1>Logged In!</h1>
 <% end %>
-
+<% end %>
 
