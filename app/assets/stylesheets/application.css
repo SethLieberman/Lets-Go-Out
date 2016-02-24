@@ -14,13 +14,28 @@
  *= require_self
  */
 
+body{
+	margin: 0;
+}
+
 .post-card{
 	border:solid black 1px;
 }
 
 .title{
-	top: 70px;
-	font-size: 6vw;
+	text-decoration: none;
+	color: white;
+	list-style-type: none;	
+	margin: 0;
+	padding: 0;
+	display: inline;
+	width: 600px;
+	padding-left: 40px;
+	padding-right: 40px;
+	font-size: 2vw;
+	position: relative;
+	top: 30%;
+	transform:translateY(-10%);
 }
 
 #navbar{
@@ -41,11 +56,15 @@
 	padding: 0;
 	display: inline;
 	width: 600px;
-	padding-left: 50px;
-	padding-right: 50px;
+	padding-left: 40px;
+	padding-right: 40px;
 	font-size: 2vw;
 	position: relative;
 	top: 30%;
 	transform:translateY(-10%);
 }
 
+.userpage{
+	margin-top: 120px;
+	font-size: 30px;
+}

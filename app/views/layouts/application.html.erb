@@ -11,8 +11,8 @@
 	<% if @current_user %>
 
 		<%= content_tag :div, id: "navbar" do %>
-				
-				<%= link_to "Home", user_path(@current_user.id), class:"nav" %>
+			
+				<%= link_to "Hello #{@current_user.username}", user_path(@current_user.id), class:"nav" %>
 
 				<%= link_to "Other Users", users_path, class:"nav" %>
 
@@ -27,7 +27,7 @@
 				<%= link_to "Signout", logout_user_path, method: :delete, class:"nav" %>
 
 			<% end %>
-				<p class="title"><%= "Welcome #{@current_user.username}" %></p>
+				
 	<% end %>
 
 <%= yield %>
