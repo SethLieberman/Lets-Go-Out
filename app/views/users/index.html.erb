@@ -1,5 +1,8 @@
 
-<h2>Here is a list of all of our users</h2>
+<%= content_tag :div, class: "show-users" do %>
+
+<%= content_tag :div, class: "all-users" do %>
+<h2>All of the Users</h2>
 			<!-- displaying all users -->
 			
 			<% @users.each do |u| %>
@@ -22,14 +25,16 @@
 
 				
 	
-		
+<% end %>		
 			<% end %>
 
 		<!-- display the people you follow -->
+<%= content_tag :div, class: "your-users" do %>
 
 		<h3>People you are following</h3>
 			<% @user.user_friends.each do |u| %>
 			<!-- links to othe user's page -->
 				<div><%= link_to"#{u.username}", user_path(u.id)%></div>
 			<% end %>
-
+<% end %>
+<% end %>

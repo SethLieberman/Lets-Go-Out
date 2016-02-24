@@ -1,3 +1,25 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.show-users{
+	margin-top: 100px;
+	border: solid black 2px;
+}
+
+.all-users{
+	border: solid black 2px;
+	margin-top: 100px;
+	text-align: center;
+	width: 400px;
+	float: left;
+}
+
+.your-users{
+	border: solid black 2px;
+	margin-top: 100px;
+	text-align: center;
+	width: 400px;
+	float: right;
+}
