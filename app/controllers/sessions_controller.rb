@@ -1,10 +1,12 @@
 class SessionsController < ApplicationController
-  
+  # layout nil
+  # layout 'application', :except => :view
+
   include Minimalist::Sessions
   skip_before_filter :authorization_required, only: [:new, :create]
 
   def new
-    @user = User.new
+    @user_signing_in = User.new
   end
 
   def create

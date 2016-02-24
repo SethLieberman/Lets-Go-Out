@@ -2,7 +2,7 @@
 <h1>Hello <%= "Welcome to #{@group.title}" %></h1>
 
 <!-- creates a new post -->
-
+<% if @current_user == @user %>
 <%= content_tag :div, id: "postform" do %>
 		
 			<%= form_for Post.new, url: user_group_posts_path(@current_user.id, @group.id), html: {method: :post} do |f| %>
@@ -52,4 +52,5 @@
 				<% end %>
 			<% end %>
 		<% end %>			
+<% end %>
 <% end %>

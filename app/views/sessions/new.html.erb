@@ -1,8 +1,10 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
 
+<% if @current_user %>
 <%= link_to "Signout", logout_user_path, method: :delete %>
+<% end %>
+
 <% if !@current_user %>
+
 <h1>LogIn</h1>
 
 <%= form_tag login_user_path do %>
@@ -13,7 +15,7 @@
 
 <h1>Sign Up</h1>
 
-<%= form_for @user do |f| %>
+<%= form_for @user_signing_in do |f| %>
 <div><%=f.label :Email%></div>
 <div><%=f.text_field :email, required: true %></div>
 <div><%=f.label :Last_Name%></div>
