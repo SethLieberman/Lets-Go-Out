@@ -8,16 +8,16 @@
 
 
 User.create([
-	{username:"ShefSeth", password:"pw", fname:"Seth", lname:"Lieberman", email:"shefseth@gmail.com",zipcode: "19103"},
-	{username:"Bob The Slob", password:"pw", fname:"Bob", lname:"Pooperton", email:"b@b",zipcode: "19104"},
-	{username:"Bess The Mess", password:"pw", fname:"Bess", lname:"Hessper", email:"bess@b",zipcode: "08003"},
-	{username:"Jilly From Philly", password:"pw", fname:"Jillian", lname:"Lieberman", email:"j@j",zipcode: "19103"},
-	{username:"Billy Bob", password:"pw", fname:"Billy", lname:"Thorton", email:"billy@b",zipcode: "19107"},
-	{username:"Stan the Man", password:"pw", fname:"Stan", lname:"Smith", email:"s@s",zipcode: "19107"},
-	{username:"Kenny", password:"pw", fname:"Kennny", lname:"Powers", email:"k@k",zipcode: "08003"},
-	{username:"Phil the Pill", password:"pw", fname:"Phil", lname:"Wonkers", email:"phil@p",zipcode: "19103"},
-	{username:"Bubby Issy", password:"pw", fname:"Issy", lname:"Rudolph", email:"issy@i",zipcode: "19107"},
-	{username:"MarthaStewart", password:"pw", fname:"Martha", lname:"Stewart", email:"martha@m",zipcode: "19107"}
+	{username:"ShefSeth", password:"pw", fname:"Seth", lname:"Lieberman", email:"shefseth@gmail.com",zipcode: "19103", avatar: File.new("app/assets/images/missing1.png")},
+	{username:"Bob The Slob", password:"pw", fname:"Bob", lname:"Pooperton", email:"b@b",zipcode: "19104", avatar: File.new("app/assets/images/missing1.png")},
+	{username:"Bess The Mess", password:"pw", fname:"Bess", lname:"Hessper", email:"bess@b",zipcode: "08003", avatar: File.new("app/assets/images/missing1.png")},
+	{username:"Jilly From Philly", password:"pw", fname:"Jillian", lname:"Lieberman", email:"j@j",zipcode: "19103", avatar: File.new("app/assets/images/missing1.png")},
+	{username:"Billy Bob", password:"pw", fname:"Billy", lname:"Thorton", email:"billy@b",zipcode: "19107", avatar: File.new("app/assets/images/missing1.png")},
+	{username:"Stan the Man", password:"pw", fname:"Stan", lname:"Smith", email:"s@s",zipcode: "19107", avatar: File.new("app/assets/images/missing1.png")},
+	{username:"Kenny", password:"pw", fname:"Kennny", lname:"Powers", email:"k@k",zipcode: "08003", avatar: File.new("app/assets/images/missing1.png")},
+	{username:"Phil the Pill", password:"pw", fname:"Phil", lname:"Wonkers", email:"phil@p",zipcode: "19103", avatar: File.new("app/assets/images/missing1.png")},
+	{username:"Bubby Issy", password:"pw", fname:"Issy", lname:"Rudolph", email:"issy@i",zipcode: "19107", avatar: File.new("app/assets/images/missing1.png")},
+	{username:"MarthaStewart", password:"pw", fname:"Martha", lname:"Stewart", email:"martha@m",zipcode: "19107", avatar: File.new("app/assets/images/missing1.png")}
 	])
 
 Group.create([
