@@ -1,2 +1,16 @@
 <h1>Places#index</h1>
-<p>Find me in app/views/places/index.html.erb</p>
+
+<h2>Top Places to Eat!</h2>
+<ol>
+
+<% @results.businesses.each do |b| %>
+	<li><h1><%= b.name %></h1></li>
+	<img src="<%= b.image_url %>" alt="">
+	<p><%= b.location.address.first %></p>
+	<p><%= b.phone %></p>
+	<img src="<%= b.rating_img_url %>" alt="">
+	<hr/>
+	<!-- this is to add a place to users page -->
+	 <!-- link_to "Add to my list", follow_place_status_path(@place.id), :method => :post%> -->
+<% end %>
+</ol>

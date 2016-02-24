@@ -7,7 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% if current_user %>
+<h1>Hello <%= "Welcome #{@user.username}" %></h1>
 
+<%= link_to "Signout", logout_user_path, method: :delete %>
+
+<%= link_to "Other Users", users_path %>
+				
+<%= link_to "#{@user.username}'s Groups", user_groups_path(@user.id)%>
+
+<%= link_to "Places", places_path%>
+
+<%= link_to "My Page", user_path(@current_user.id) %>
+
+<% end %>
 
 <%= yield %>
 <%= flash[:alert] if flash[:alert] %>
