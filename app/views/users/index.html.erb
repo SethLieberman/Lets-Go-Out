@@ -29,14 +29,17 @@
 			<% end %>
 
 		<!-- display the people you follow -->
-<%= content_tag :div, class: "your-users" do %>
-
-		<h3>People you are following</h3>
-			<% @user.user_friends.each do |u| %>
-			<!-- avatar for each user -->
-			<%= image_tag @user.avatar.url(:thumb) %>
-			<!-- links to othe user's page -->
-				<div><%= link_to"#{u.username}", user_path(u.id)%></div>
-			<% end %>
-<% end %>
+	<%= content_tag :div, class: "your-users" do %>
+	
+			<h3>People you are following</h3>
+			
+				<% @user.user_friends.each do |u| %>
+<%= content_tag :div, class: "eusers" do %>
+				<!-- avatar for each user -->
+				<div><%= image_tag @user.avatar.url(:thumb) %></div>
+				<!-- links to othe user's page -->
+					<div><%= link_to"#{u.username}", user_path(u.id)%></div>
+				<% end %>
+	<% end %>
+	<% end %>
 <% end %>
