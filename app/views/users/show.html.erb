@@ -1,8 +1,9 @@
 
+
+
+ <!-- shows other user's name -->
  <% if @current_user != @user%>
-
-<%= content_tag :p, "#{@user.username}'s Page", class:"userpage" %>
-
-
+	<%= content_tag :p, "#{@user.username}'s Page", class:"userpage" %>
  <% end %>
 
+<%= render "users/users_places"%>
