@@ -22,9 +22,9 @@
 
 $( document).on("page:change ready ajax:success", function() {
 
+	var query ="";
 	var map;
 	var infowindow;
-
 	var request;
 	var services;
 	var markers = [];
@@ -33,12 +33,13 @@ $( document).on("page:change ready ajax:success", function() {
 		console.log('*****************test')
 	})
 
-	var query = $('#searcher').text();
+	query = $('#searcher').text();
 	if (query == null || query == "") {
 		query = 'restaurant'
-	}else {
-		initialize();
-	};
+	}
+	console.log("QUERY IS: " + query)
+	initialize();
+
 	// alert(query);
 
 
@@ -51,11 +52,11 @@ $( document).on("page:change ready ajax:success", function() {
 		request = {
 			location: center,
 		// this is in meters about 2.5 miles
-		radius: 4047,
-		types: [query]
+		radius: 2047,
+		keyword: query
 	};
 
-	infowindow = new google.maps.InfoWindow({ content: 'TEST'});
+	infowindow = new google.maps.InfoWindow();
 	service = new google.maps.places.PlacesService(map);
 
 	service.nearbySearch(request, callback);
@@ -66,8 +67,8 @@ $( document).on("page:change ready ajax:success", function() {
 
 		var request = {
 			location: event.latLng,
-			radius: 4047,
-			query: [query]
+			radius: 2047,
+			types: [query]
 		};
 		service.nearbySearch(request, callback);
 	})
@@ -76,8 +77,6 @@ $( document).on("page:change ready ajax:success", function() {
 function callback(results, status){
 	if (status == google.maps.places.PlacesServiceStatus.OK){
 		for (var i = 0; i < results.length; i++){
-			// old code commented out
-			// createMarker(results[i]);
 			markers.push(createMarker(results[i]));
 		}
 	}
@@ -106,12 +105,12 @@ google.maps.event.addListener(marker, 'click', function(){
 	popup += '<br/>'
 
 // this is calling the popup above for the infowindow
-infowindow.setContent(popup);
-console.log(place)
-infowindow.open(map, this);
-});
-return marker;
-}
+	infowindow.setContent(popup);
+	console.log(place)
+	infowindow.open(map, this);
+	});
+	return marker;
+	}
 
 function clearResults(markers){
 	for (var m in markers) {
@@ -122,7 +121,7 @@ function clearResults(markers){
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-
+ 
 
 });
 

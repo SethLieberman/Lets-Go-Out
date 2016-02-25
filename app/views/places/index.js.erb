@@ -4,6 +4,6 @@
 $('#yelps').html("<%= j render('yelp_places')%>");
 
 var custom_q = "<%= @query %>";
-$('body').append("<h2 id='searcher'><%= @query %></h2>")
+$('#searcher').text("<%= @query %>")
 // alert(custom_q);
 
