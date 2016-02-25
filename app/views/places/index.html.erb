@@ -1,20 +1,25 @@
+<br>
+<br>
+<br>
+<br>
+<br>
 <h2>Top Places to Eat!</h2>
-<ol>
 
 
-<%= content_tag :div, class: "yelp" do %>
-<% @results.businesses.each do |b| %>
-
-	<li><h1><%= b.name %></h1></li>
-	<img src="<%= b.image_url %>" alt="">
-	<p><%= b.location.address.first %></p>
-	<p><%= b.phone %></p>
-	<img src="<%= b.rating_img_url %>" alt="">
-	<hr/>
-	<!-- this is to add a place to users page -->
-	 <!-- link_to "Add to my list", follow_place_status_path(@place.id), :method => :post%> -->
+<%= form_tag search_path, remote: :true, method: :post do %>
+<%= text_field_tag :search %>
+<%= submit_tag "SEARCH" %>
 <% end %>
-</ol>
-<% end %>
-<div id="map">
+<%= link_to "Hello SETH", places_path, remote: :true %>
+
+<div id="yelps">
+<%= render "yelp_places"%>
 </div>
+
+
+<div id="mapper">
+	<%= render "google_map"%>
+</div>
+
+
+<%= render "places/users_places"%>

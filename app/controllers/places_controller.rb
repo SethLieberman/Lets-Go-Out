@@ -19,6 +19,10 @@ class PlacesController < ApplicationController
 		# when user clicks add place to user page
 	end
 
+	def search
+		redirect_to :index
+	end
+
 
 	def index
 		@hash = Gmaps4rails.build_markers(@users) do |user, marker|
@@ -26,21 +30,26 @@ class PlacesController < ApplicationController
 			marker.lng user.longitude
 		end
 
+		puts "HASHING is #{@hash}"
+
 		@user = current_user
 		@users = User.all
+
+		@query = params[:search] || "restaurant"
+		puts "PLACE IS #{@query}"
 
 		client = Yelp::Client.new({ consumer_key: ENV['Y_CONSUMER_KEY'],
 			consumer_secret: ENV['Y_CONSUMER_SECRET'],
 			token: ENV['Y_TOKEN'],
 			token_secret: ENV['Y_TOKEN_SECRET']
 			})
-		if params[:cuisine]
-			query = params[:cuisine]
-		else
-			query = "restaurant"
+		# if params[:cuisine]
+		# 	query = params[:cuisine]
+		# else
+		# 	query = "restaurant"
 
-		end
-		@results = client.search('Philadelphia', { term: query}, sort:[2], offset:[20])
+		# end
+		@results = client.search('Philadelphia', { term: @query}, sort:[2], offset:[20])
 
 	end
 end

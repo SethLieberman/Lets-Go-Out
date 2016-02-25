@@ -16,6 +16,8 @@
   root 'sessions#new'
 
   get 'login' => 'sessions#new'
+  post 'search' => 'places#index', as: :search
+  get 'search' => 'places#index'
   post 'post_login' => 'sessions#create', as: :login_user
   delete 'signout' => 'sessions#destroy', as: :logout_user
   get 'signout' => 'sessions#destroy', as: :get_logout_user 
