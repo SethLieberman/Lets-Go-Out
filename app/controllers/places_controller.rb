@@ -7,7 +7,7 @@ class PlacesController < ApplicationController
 	def create
 		puts "MY PRAMS SETH ARE #{params}"
 		p = Place.create(placename: params[:name], location: params[:location], google_place_id: params[:google_id], lat: params[:lat], lng: params[:lng] )
-		# @current_user.places.push
+		@current_user.places.push(p)
 		redirect_to root_path
 	end
 
