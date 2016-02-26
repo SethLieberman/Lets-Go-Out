@@ -110,7 +110,7 @@ google.maps.event.addListener(marker, 'click', function(){
 	$.ajax({
 		type: "POST",     
 		url: "/places",     
-		data: {name: place.name},
+		data: {name: place.name, location: place.vicinity, google_id: place.place_id},
 		 success: function (d) {         
 		 	console.log('data returned is: ' + d);     
 		},
