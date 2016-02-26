@@ -59,4 +59,11 @@ class PlacesController < ApplicationController
 		@results = client.search('Philadelphia', { term: @query}, sort:[2], offset:[20])
 
 	end
+
+	def destroy
+		@user = User.find(current_user)
+		@place = Place.find(params[:id])
+		@place.destroy
+		redirect_to user_path(@user.id)
+	end
 end

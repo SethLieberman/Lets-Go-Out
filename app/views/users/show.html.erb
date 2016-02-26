@@ -1,7 +1,23 @@
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<% if @current_user == @user %>
+<h1>My Places</h1>
+<% end %>
 
 
 
  <!-- shows other user's name -->
  <% if @current_user != @user%>
-	<%= content_tag :p, "#{@user.username}'s Page", class:"userpage" %>
+	<%= content_tag :p, "#{@user.username}'s Places", class:"userpage" %>
  <% end %>
+<% @user.places.each do |p| %>
+	<div><%= p.placename %>
+	<%= link_to "delete", place_path(p), {:method => :delete} %></div>
+<% end %>
