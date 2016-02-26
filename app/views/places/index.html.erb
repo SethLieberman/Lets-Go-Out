@@ -3,6 +3,7 @@
 <br>
 <br>
 <br>
+
 <h2>Top Places to Eat!</h2>
 
 
@@ -12,14 +13,17 @@
 <% end %>
 <%= link_to "Hello SETH", places_path, remote: :true %>
 
+<!-- loads yelp display -->
 <div id="yelps">
 <%= render "yelp_places"%>
 </div>
 
-
+<!-- display google maps -->
 <div id="mapper">
 	<%= render "google_map"%>
 </div>
 
+<!-- list the restaurants from google API -->
+<div id="thing"></div>
 
 <%= render "places/users_places"%>

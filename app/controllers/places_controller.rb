@@ -4,6 +4,12 @@ class PlacesController < ApplicationController
 
 	def edit
 	end
+	def create
+		puts "MY PRAMS SETH ARE #{params}"
+		p = Place.new(placename: params[:name])
+		p.save
+		redirect_to root_path
+	end
 
 	def show
 
@@ -17,6 +23,7 @@ class PlacesController < ApplicationController
 
 	def follow_place
 		# when user clicks add place to user page
+
 	end
 
 	def search

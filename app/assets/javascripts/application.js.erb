@@ -82,13 +82,13 @@ function callback(results, status){
 	}
 }
 
-
 function createMarker(place){
 	var placeLoc = place.geometry.location;
 	var marker = new google.maps.Marker({
 		map: map,
 		position: place.geometry.location
 	});
+	$('#thing').append("<h3>"+ place.name +" "+ place.vicinity +", "+ "Rated" +" "+ place.rating +  "</h3>")
 
 // this is adding the information to the information card 
 google.maps.event.addListener(marker, 'click', function(){
@@ -107,6 +107,17 @@ google.maps.event.addListener(marker, 'click', function(){
 // this is calling the popup above for the infowindow
 	infowindow.setContent(popup);
 	console.log(place)
+	$.ajax({
+		type: "POST",     
+		url: "/places",     
+		data: {name: place.name},
+		 success: function (d) {         
+		 	console.log('data returned is: ' + d);     
+		},
+		error: function(data){
+			console.log("NOT WORKING: "+ data);
+		} 
+	})
 	infowindow.open(map, this);
 	});
 	return marker;
