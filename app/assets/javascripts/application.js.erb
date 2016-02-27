@@ -78,6 +78,7 @@ function callback(results, status){
 	if (status == google.maps.places.PlacesServiceStatus.OK){
 		for (var i = 0; i < results.length; i++){
 			markers.push(createMarker(results[i]));
+
 		}
 	}
 }
@@ -88,7 +89,8 @@ function createMarker(place){
 		map: map,
 		position: place.geometry.location
 	});
-	$('#thing').append("<h3>"+ place.name +" "+ place.vicinity +", "+ "Rated" +" "+ place.rating +  "</h3>")
+
+	$('#thing').append("<h3>"+ place.name +" "+ place.vicinity +", "+ "Rated" +" "+ place.rating + "</h3>")
 
 // this is adding the information to the information card 
 google.maps.event.addListener(marker, 'click', function(){
@@ -101,27 +103,34 @@ google.maps.event.addListener(marker, 'click', function(){
 	popup += '<br/>'
 	popup += place.rating + ' Rating'
 	popup += '<br/>'
-	popup += '<a href="#">Add me</a>'
+	popup += '<button id="addme">Add me</button>'
 	popup += '<br/>'
 
+
+
 // this is calling the popup above for the infowindow
-	infowindow.setContent(popup);
-	console.log(place)
-	$.ajax({
-		type: "POST",     
-		url: "/places",     
-		data: {name: place.name, location: place.vicinity, google_id: place.place_id, lat: place.geometry.location.lat(), lng: place.geometry.location.lng()},
-		 success: function (d) {         
-		 	console.log('data returned is: ' + d);     
-		},
-		error: function(data){
-			console.log("NOT WORKING: "+ data);
-		} 
-	})
-	infowindow.open(map, this);
+infowindow.setContent(popup);
+console.log(place)
+// add place to favorites list
+	$("#addme").click(function() {	
+		$.ajax({
+			type: "POST",     
+			url: "/places",     
+			data: {name: place.name, location: place.vicinity, google_id: place.place_id, lat: place.geometry.location.lat(), lng: place.geometry.location.lng()},
+			success: function (d) {         
+				console.log('data returned is: ' + d);     
+			},
+			error: function(data){
+				console.log("NOT WORKING: "+ data);
+			} 
+		})
+
 	});
-	return marker;
-	}
+
+infowindow.open(map, this);
+});
+return marker;
+}
 
 function clearResults(markers){
 	for (var m in markers) {
@@ -132,10 +141,5 @@ function clearResults(markers){
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
- 
-
 });
-
-
-
 
