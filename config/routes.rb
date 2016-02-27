@@ -31,7 +31,7 @@
   post '/update_group_status/:id' => 'users#update_group_status', as: :update_group_status
 
 # add a place to group
-  post '/add_place_group' => 'users#add_place_group', as: :add_place_group
+  get '/add_place_group' => 'users#add_place_group', as: :add_place_group
 
 
 

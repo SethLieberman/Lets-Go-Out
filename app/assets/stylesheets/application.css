@@ -69,6 +69,11 @@ body{
 	font-size: 30px;
 }
 
-#addme{
-	color: red;
-}
+.flash-notice{
+	font-size: 3vw;
+	text-align: center;
+	margin:0 auto;
+	width: 450px;
+	color: #bbd1d2
+}	
+

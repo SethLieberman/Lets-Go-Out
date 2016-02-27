@@ -43,6 +43,8 @@
 	<% end %>
 
 	<%= yield %>
+	<div class="flash-notice">
 	<%= flash[:alert] if flash[:alert] %>
+	<end>
 </body>
 </html>
