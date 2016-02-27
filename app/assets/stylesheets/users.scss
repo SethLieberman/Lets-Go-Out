@@ -39,13 +39,26 @@
 }
 
 .profile-info{
-	border:solid black 2px;
-	float:right;
-	width:200px;	
+	margin:0 auto;
+	font-size:2vw;
+	width:400px;	
 	text-align:center;
 }
 
 .user-places{
+	font-size:1.5vw;
 	border:solid black 2px;
-	width:300px;
+	padding:10px;
+	border-radius:20px;
+	width:500px;
+	display:inline-block;
+	margin-left:20px;
+	margin-right:20px;
+	margin-bottom:10px;
+}
+
+.content{
+	margin:0 auto;
+	clear:both;
+	text-align:center;
 }
