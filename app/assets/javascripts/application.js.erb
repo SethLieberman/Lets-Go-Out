@@ -18,7 +18,15 @@
 //= require underscore
 //= require gmaps/google
 
+$(document).ready(function() {
 
+$(".editp").hide();
+
+$(".edit-button").click(function() {
+  $(".editp").toggle(200);
+});
+
+});
 
 $( document).on("page:change ready ajax:success", function() {
 

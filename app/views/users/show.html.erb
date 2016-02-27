@@ -5,26 +5,10 @@
 <br>
 <br>
 <br>
-
-
 <% if @current_user == @user %>
-<h1>My Places</h1>
-<% end %>
-
-
-
- <!-- shows other user's name -->
- <% if @current_user != @user%>
-	<%= content_tag :p, "#{@user.username}'s Places", class:"userpage" %>
- <% end %>
-<% @user.places.each do |p| %>
-	<div><%= p.placename %>
-	<%= link_to "delete", place_path(p), {:method => :delete} %></div>
-<% end %>
-
-<%= content_tag :h1, "Edit Profile", class: "ep" %>
-
+<!-- edit users profile -->
 <%= content_tag :div, class: "editp" do %>
+<%= content_tag :h1, "Edit Profile", class: "ep" %>
 <%= form_for @current_user, url: user_path(@current_user.id), html: {method: :put} do |f| %>
 <div><%=f.label :Email%></div>
 <div><%=f.text_field :email, required: true %></div>
@@ -40,3 +24,40 @@
 <div><%=f.submit :"Update" %></div>
 <% end %> 
 <% end %>
+			<!-- display users information -->
+	
+	<%= content_tag :div, class:"profile-info"  do %>
+		<%= image_tag @current_user.avatar.url(:thumb) %>
+		<div><%= @current_user.username %></div>
+		<div><%= @current_user.fname %></div>
+		<div><%= @current_user.lname %></div>
+		<div><%= @current_user.zipcode %></div>
+		<div><%= @current_user.email %>	</div>
+		<button class="edit-button">Edit</button>
+	<% end %>
+	<% end %>
+
+<% if @current_user == @user %>
+<h1>My Places</h1>
+<% end %>
+
+<!-- shows other user's name -->
+
+ <% if @current_user != @user%>
+	<%= content_tag :p, "#{@user.username}'s Places", class:"userpage" %>
+ <% end %>
+ <!-- show the user's places -->
+
+<% @user.places.each do |p| %>
+<%= content_tag :div, class:"user-places" do %>
+	<div><%= p.placename %>
+	<%= link_to "delete", place_path(p), {:method => :delete} %></div>
+	<%= p.location %>
+	<%= form_for Comment.new, url: user_path(@current_user.id), html: {method: :post} do |f| %>
+		<%=f.text_area :content, id: "content-input", placeholder:"comment", required: true %>
+		<%=f.submit :Post, id: "post-submit" %>
+
+<% end %>
+<% end %>
+<% end %>
+
