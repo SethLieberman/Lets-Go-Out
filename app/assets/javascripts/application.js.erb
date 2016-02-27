@@ -18,18 +18,14 @@
 //= require underscore
 //= require gmaps/google
 
-$(document).ready(function() {
-
-$(".editp").hide();
-
-$(".edit-button").click(function() {
-  $(".editp").toggle(200);
-});
-
-});
-
 $( document).on("page:change ready ajax:success", function() {
 
+	$(".editp").hide();
+
+	$(".edit-button").click(function() {
+	  $(".editp").show(300);
+	});
+	
 	var query ="";
 	var map;
 	var infowindow;
@@ -114,6 +110,7 @@ google.maps.event.addListener(marker, 'click', function(){
 	popup += '<button id="addme">Add me</button>'
 	popup += '<br/>'
 
+	
 
 
 // this is calling the popup above for the infowindow

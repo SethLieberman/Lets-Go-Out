@@ -9,8 +9,8 @@
 }
 #map {
   padding: 10px 10px 10px 10px;
-  height: 600px;
-  width: 600px;
+  height: 800px;
+  width: 800px;
 
   margin: 0 auto;
   margin-top: 50px;
@@ -71,9 +71,17 @@
   font-weight: 300;
 }
 
+.search{
+  margin: 0 auto;
+  width: 200px;
+  text-align: center;
+  font-size: 1.3vw;
+}
+
+
 // this is for yelp
 
-.yelp{
-  width: 300px;
-  float: left;
-}
+// .yelp{
+//   width: 300px;
+//   float: left;
+// }

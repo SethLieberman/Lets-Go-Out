@@ -30,8 +30,9 @@
 
   post '/update_group_status/:id' => 'users#update_group_status', as: :update_group_status
 
-  # this should allow user to add a place to userpage
-  post 'place_path/:id' => 'places#follow_place', as: :follow_place
+# add a place to group
+  post '/add_place_group' => 'users#add_place_group', as: :add_place_group
+
 
 
   # get '/user/:id/followers' => 'users#followers', as: 'followers'

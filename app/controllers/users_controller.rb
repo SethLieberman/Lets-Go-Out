@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
     @users = User.all
     @posts = Post.all
+    @groups = @user.groups
     @comments = Comment.all    
     @comments = @comments.sort_by {|comment| comment.created_at}.reverse
     @posts = @posts.sort_by {|post| post.created_at }.reverse
@@ -30,8 +31,7 @@ class UsersController < ApplicationController
   def index
     @user = current_user
     @users = User.all
-    # @posts = Post.all
-    # @comments = Comment.all
+
   end
 
   def update
@@ -60,20 +60,11 @@ def update_follow_status
   redirect_to users_path
 end
 
-# to add followers to groups
-
-def update_group_status
-  @user_to_group = User.find(params[:id])
-  current_user.groups.include? @user_to_group
-      # current_user.groups.destroy @user_to_group
-
-    # else
-    #   current_user.user_groups.push @user_to_group
-
-    # end
-    redirect_to users_path current_user
-  end
-
+def add_place_group
+    p = Place.create(placename: params[:name], location: params[:location], google_place_id: params[:google_id], lat: params[:lat], lng: params[:lng] )
+    @current_user.group.places.push(p)
+    redirect_to root_path
+end
 
   private
   def user_params

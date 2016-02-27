@@ -4,12 +4,12 @@
 <br>
 <br>
 
-<h2>Top Places to Eat!</h2>
-
-
+<%= content_tag :div, class:"search" do %>
+<h2>Find Places To Go</h2>
 <%= form_tag search_path, remote: :true, method: :post do %>
 <%= text_field_tag :search %>
 <%= submit_tag "SEARCH" %>
+<% end %>
 <% end %>
 
 
