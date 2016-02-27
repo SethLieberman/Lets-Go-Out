@@ -8,8 +8,8 @@ class UsersController < ApplicationController
   	@user = User.new(user_params)
   	if @user.save
       flash[:alert]="Now you can sign in"
-  		redirect_to login_path 
-  	else
+      redirect_to login_path 
+    else
       redirect_to login_path
   		# redirect_to new_user_path
   	end
@@ -34,6 +34,13 @@ class UsersController < ApplicationController
     # @comments = Comment.all
   end
 
+  def update
+    current_user
+    @current_user.update_attributes(update_params) 
+    redirect_to user_path(params[:id])
+
+  end
+
   def destroy
   	@user = User.find(params[:id])
   	@user.destroy
@@ -41,23 +48,23 @@ class UsersController < ApplicationController
   end
 
 # to follow users
-  def update_follow_status
-    @user_to_follow = User.find(params[:user_id])
-    if current_user.user_friends.include? @user_to_follow
-      current_user.user_friends.destroy @user_to_follow
+def update_follow_status
+  @user_to_follow = User.find(params[:user_id])
+  if current_user.user_friends.include? @user_to_follow
+    current_user.user_friends.destroy @user_to_follow
 
-    else
-      current_user.user_friends.push @user_to_follow
+  else
+    current_user.user_friends.push @user_to_follow
 
-    end
-    redirect_to users_path
   end
+  redirect_to users_path
+end
 
 # to add followers to groups
 
-  def update_group_status
-    @user_to_group = User.find(params[:id])
-    current_user.groups.include? @user_to_group
+def update_group_status
+  @user_to_group = User.find(params[:id])
+  current_user.groups.include? @user_to_group
       # current_user.groups.destroy @user_to_group
 
     # else
@@ -71,6 +78,10 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :lname, :fname, :username, :zipcode, :avatar)
+  end
+
+  def update_params
+    params.require(:user).permit(:username, :email, :zipcode, :lname, :fname, :zipcode, :avatar)
   end
   
 end

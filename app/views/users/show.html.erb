@@ -21,3 +21,22 @@
 	<div><%= p.placename %>
 	<%= link_to "delete", place_path(p), {:method => :delete} %></div>
 <% end %>
+
+<%= content_tag :h1, "Edit Profile", class: "ep" %>
+
+<%= content_tag :div, class: "editp" do %>
+<%= form_for @current_user, url: user_path(@current_user.id), html: {method: :put} do |f| %>
+<div><%=f.label :Email%></div>
+<div><%=f.text_field :email, required: true %></div>
+<div><%=f.label :Last_Name%></div>
+<div><%=f.text_field :lname, required: true %></div>
+<div><%=f.label :First_Name%></div>
+<div><%=f.text_field :fname, required: true %></div>
+<div><%=f.label :username%></div>
+<div><%=f.text_field :username, maxlength: 10, required: true %></div>
+<div><%=f.label :zipcode%></div>
+<div><%=f.text_field :zipcode, required: true %></div>
+<div><%= f.file_field :avatar %></div>
+<div><%=f.submit :"Update" %></div>
+<% end %> 
+<% end %>
