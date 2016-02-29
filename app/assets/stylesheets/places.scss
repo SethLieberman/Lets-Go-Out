@@ -11,9 +11,7 @@
   padding: 10px 10px 10px 10px;
   height: 800px;
   width: 800px;
-
-  margin: 0 auto;
-  margin-top: 50px;
+  float: right;
   padding: 0;
 }
 
@@ -78,10 +76,9 @@
   font-size: 1.3vw;
 }
 
-
-// this is for yelp
-
-// .yelp{
-//   width: 300px;
-//   float: left;
-// }
+.place-box{
+  border:solid black 2px;
+  width: 600px;
+  max-height: 800px;
+  overflow: hidden;
+}

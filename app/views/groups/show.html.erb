@@ -1,9 +1,15 @@
-
+<%= content_tag :div, class:"group-places" do %>
 <h1>Hello <%= "Welcome to #{@group.title}" %></h1>
 
+<!-- shows places that user adds to group -->
+
 	<% @group.places.each do |place| %>
-	<%= place.placename%> <br/>
+	<%= content_tag :div, class:"user-places" do %>
+	<div><%= place.placename%></div>
+	<%= place.location %>
 	<% end%>
+<% end %>
+<% end %>
 <br>
 <br>
 <br>
@@ -16,15 +22,17 @@
 			<%= form_for Post.new, url: user_group_posts_path(@current_user.id, @group.id), html: {method: :post} do |f| %>
 
 			<!-- title of post -->
-			<%= content_tag :div, id: "title" do %>
-				<%= f.text_field :title,required: true, placeholder: "title", id: "title-input", class: "post-input" %>
-				<% end %>
+			<%= content_tag :div, id: "post" do %>
+				<%= f.text_field :title,required: true, placeholder: "Title", class: "post-input" %>
+				
 
 				<!-- content of post -->
 				<%= content_tag :div, id: "content" do %>
-				<%= f.text_area :content, required: true, placeholder: "content", id: "content-input", class: "post-input" %>
-
+				<%= f.text_area :content, required: true, placeholder: "Content", class: "post-input" %>
+				<div>
 				<%= f.submit :Post, id: "post-submit" %>
+				</div>
+				<% end %>
 				<% end %>
 			<% end %>
 		<% end %>
@@ -33,9 +41,9 @@
 	<% @posts.each do |post| %>
 		
 			<%= content_tag :div, class: "post-card" do %>
-				<%= content_tag :p, "#{post.title} | #{post.id}"%>
+				<%= content_tag :p, "#{post.title}"%>
 				<%= content_tag :p, "#{post.content}" %>
-				<%= content_tag :p, "posted by #{post.user.username} and created #{distance_of_time_in_words(post.created_at, Time.now)} ago" %>
+				<%= content_tag :p, "posted by #{post.user.username} #{distance_of_time_in_words(post.created_at, Time.now)} ago" %>
 				
 					<%= link_to "delete", user_group_post_path(@current_user.id, @group.id ,post.id), {:method => :delete} %>
 				
@@ -54,7 +62,7 @@
 				
 				<% post.comments.each do |comment| %>
 					<%= content_tag :p, "#{comment.content}" %>
-					<%= content_tag :p, "comment by #{comment.user.username} and created #{distance_of_time_in_words(comment.created_at, Time.now)} ago" %>
+					<%= content_tag :p, "comment by #{comment.user.username} #{distance_of_time_in_words(comment.created_at, Time.now)} ago" %>
 
 					<%= link_to "delete", user_group_post_comment_path(@current_user.id, @group.id ,post.id, comment.id), {:method => :delete} %>
 				<% end %>

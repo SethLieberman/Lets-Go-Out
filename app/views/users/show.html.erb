@@ -1,10 +1,4 @@
-<br>
-<br>
 
-<br>
-<br>
-<br>
-<br>
 <% if @current_user == @user %>
 
 	<!-- edit users profile -->
@@ -58,15 +52,14 @@
 		<% end %>
 	</div>
 	<%= p.location %>
+	<hr>
 	
-	<%= form_for Comment.new, url: user_path(@current_user.id), html: {method: :post} do |f| %>
-		<%=f.text_area :content, id: "content-input", placeholder:"comment", required: true %>
-		<%=f.submit :Post, id: "post-submit" %>
 		<% @groups.each do |g| %>
+			<!-- add places to your groups -->
 			<%= link_to "Add to #{g.title}", add_place_group_path(group_id: g.id, place_id: p.id), html: {method: :post}, class:"g"%>
 <% end %>
 <% end %>
 <% end %>
 <% end %>
-<% end %>
+
 
