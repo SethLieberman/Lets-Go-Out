@@ -61,10 +61,14 @@ def update_follow_status
 end
 
 def add_place_group
-    # @place = Place.find(params[:place_id])
-    # @current_user.places.push(p)
+
+    @place = Place.find(params[:place_id])
+    @group = Group.find(params[:group_id])
+    puts "PLACE IS #{@place}"
+    puts "GROUP IS #{@group}"
+    @group.places.push(@place)
     puts "******************$$$$$$$$"
-    redirect_to user_path @current_user.id
+    redirect_to user_group_path(current_user, @group.id)
 end
 
   private

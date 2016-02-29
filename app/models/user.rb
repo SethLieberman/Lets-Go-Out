@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
 	has_many :comments
 
 	# # this is to invite users to groups
-	# has_many :invitations, :class_name => "Invite", :foreign_key => 'recipient_id'
-	# has_many :sent_invites, :class_name => "Invite", :foreign_key => 'sender_id'
+	has_many :invitations, :class_name => "Invite", :foreign_key => 'recipient_id'
+	has_many :sent_invites, :class_name => "Invite", :foreign_key => 'sender_id'
 
 	
 

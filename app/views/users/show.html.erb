@@ -63,7 +63,7 @@
 		<%=f.text_area :content, id: "content-input", placeholder:"comment", required: true %>
 		<%=f.submit :Post, id: "post-submit" %>
 		<% @groups.each do |g| %>
-			<%= link_to "#{g.title}", add_place_group_path, html: {method: :post}, class:"g"%>
+			<%= link_to "Add to #{g.title}", add_place_group_path(group_id: g.id, place_id: p.id), html: {method: :post}, class:"g"%>
 <% end %>
 <% end %>
 <% end %>

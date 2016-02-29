@@ -1,32 +1,6 @@
 
 <%= content_tag :div, class: "show-users" do %>
 
-	<%= content_tag :div, class: "all-users" do %>
-	<h2>All of the Users</h2>
-			<!-- displaying all users -->
-		
-			<% @users.each do |u| %>
-				<% if u!= @user%>
-				<div><%= u.username %></div>
-
-				<% if @user.user_friends.include? u%>
-					<%= link_to "Unfollow", update_follow_status_path({user_id: u.id}), :method => :post%>
-
-				<% else %>
-					<%= link_to "Follow", update_follow_status_path({user_id: u.id}), :method => :post%>
-
-				<% end %>
-				<% end %>
-
-			<!-- to add followers to group -->
-
-				
-					 <!-- link_to "Leave Group", update_group_status_path(:id => u.id), :method => :post -->
-
-				
-	
-	<% end %>		
-			<% end %>
 
 		<!-- display the people you follow -->
 	<%= content_tag :div, class: "your-users" do %>
@@ -44,3 +18,25 @@
 			<% end %>
 	<% end %>
 <% end %>
+<hr>
+	<%= content_tag :div, class: "all-users" do %>
+	<h2>All of the Users</h2>
+			<!-- displaying all users -->
+		
+			<% @users.each do |u| %>
+				<% if u!= @user%>
+				<span class="uname"><%= u.username %></span>
+
+				<% if @user.user_friends.include? u%>
+					<%= link_to "Unfollow", update_follow_status_path({user_id: u.id}), :method => :post%>
+
+				<% else %>
+					<%= link_to "Follow", update_follow_status_path({user_id: u.id}), :method => :post%>
+
+				<% end %>
+				<% end %>
+				
+	
+	<% end %>		
+			<% end %>
+

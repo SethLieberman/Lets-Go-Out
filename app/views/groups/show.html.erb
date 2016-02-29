@@ -1,6 +1,14 @@
 
 <h1>Hello <%= "Welcome to #{@group.title}" %></h1>
 
+	<% @group.places.each do |place| %>
+	<%= place.placename%> <br/>
+	<% end%>
+<br>
+<br>
+<br>
+<br>
+
 <!-- creates a new post -->
 <% if @current_user == @user %>
 <%= content_tag :div, id: "postform" do %>
