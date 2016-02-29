@@ -1,4 +1,5 @@
 require 'bcrypt'
+require 'sendgrid-ruby'
 
 class User < ActiveRecord::Base
 
@@ -23,7 +24,10 @@ class User < ActiveRecord::Base
 	has_many :invitations, :class_name => "Invite", :foreign_key => 'recipient_id'
 	has_many :sent_invites, :class_name => "Invite", :foreign_key => 'sender_id'
 
-	
+	# sengrid mailer
+	client = SendGrid::Client.new do |c|  
+	c.api_key = ENV['SENDGRID_API_KEY']
+	end	
 
 	has_secure_password
 	validates_confirmation_of :password  

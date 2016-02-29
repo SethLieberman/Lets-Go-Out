@@ -28,10 +28,10 @@
 				<span class="uname"><%= u.username %></span>
 
 				<% if @user.user_friends.include? u%>
-					<%= link_to "Unfollow", update_follow_status_path({user_id: u.id}), :method => :post%>
+					<%= link_to "(Unfollow)", update_follow_status_path({user_id: u.id}), :method => :post%>
 
 				<% else %>
-					<%= link_to "Follow", update_follow_status_path({user_id: u.id}), :method => :post%>
+					<%= link_to "(Follow)", update_follow_status_path({user_id: u.id}), :method => :post%>
 
 				<% end %>
 				<% end %>

@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
-	
+
 	has_many :places, through: :meetup_places
 	has_many :places
 	

@@ -10,8 +10,9 @@
 #map {
   padding: 10px 10px 10px 10px;
   height: 800px;
-  width: 800px;
+  width: 700px;
   float: right;
+  right:20px;
   padding: 0;
 }
 
@@ -78,7 +79,9 @@
 
 .place-box{
   border:solid black 2px;
-  width: 600px;
+  text-align: center;
+  width: 500px;
   max-height: 800px;
   overflow: hidden;
+  margin-left:20px;
 }

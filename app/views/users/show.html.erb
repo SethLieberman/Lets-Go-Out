@@ -33,7 +33,7 @@
 	<% end %>
 		<%= content_tag :div, class:"content" do %>
 		<% if @current_user == @user %>
-		<h1>My Places</h1>
+		<h1>My List</h1>
 		<% end %>
 
 <!-- shows other user's name -->
@@ -47,16 +47,20 @@
 <%= content_tag :div, class:"user-places" do %>
 	<div>
 			<%= p.placename %>
+			<div><%= p.location %></div>
 			<% if @current_user == @user %>
-		<%= link_to "delete", place_path(p), {:method => :delete} %>
+		<div class="delete">
+			<%= link_to "(delete)", place_path(p), {:method => :delete} %>
+		</div>
 		<% end %>
 	</div>
-	<%= p.location %>
-	<hr>
 	
-		<% @groups.each do |g| %>
-			<!-- add places to your groups -->
-			<%= link_to "Add to #{g.title}", add_place_group_path(group_id: g.id, place_id: p.id), html: {method: :post}, class:"g"%>
+	<hr>
+		<% if @current_user == @user %>
+			<% @groups.each do |g| %>
+				<!-- add places to your groups -->
+				<%= link_to "Add to #{g.title}", add_place_group_path(group_id: g.id, place_id: p.id), html: {method: :post}, class:"g"%>
+		<% end %>
 <% end %>
 <% end %>
 <% end %>

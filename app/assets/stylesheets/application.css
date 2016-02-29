@@ -14,9 +14,12 @@
  *= require_self
  */
 
+
 body{
 	margin: 0;
 	margin-top: 100px;
+	font-family: 'Mouse Memoirs', sans-serif;
+	background: #dcdcdc
 }
 
 
@@ -37,7 +40,7 @@ body{
 }
 
 #navbar{
-	background: black;
+	background: #b0b0b0;
 	position: fixed;
 	top:0;
 	width: 100%;
@@ -75,4 +78,13 @@ body{
 	width: 450px;
 	color: #bbd1d2
 }	
+
+a{
+	text-decoration: none;
+	color:black;
+}
+
+.delete{
+	font-size: 1vw;
+}
 
