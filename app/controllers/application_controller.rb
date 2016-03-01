@@ -17,23 +17,23 @@ class ApplicationController < ActionController::Base
   	end
   end
 
-  def mail(email)
+  def mail(email, token="")
 
-      client = SendGrid::Client.new do |c|
+    client = SendGrid::Client.new do |c|
       c.api_key = ENV['SENDGRID_API_KEY']
-      end
+    end
 
     mail = SendGrid::Mail.new do |m|
          #Specify to whom you are sending with the Email object
          m.to = @user.email
          m.from = current_user.email
          m.subject = 'Invite to Group'   
-         m.text = 'hello'
+         m.text = "Your token is #{token}, you were invited by #{current_user.username}"
        end
 
        res = client.send(mail) 
        puts @code = res.code
        puts res.body 
 
-  end
-end
+     end
+   end

@@ -22,10 +22,15 @@ class InvitesController < ApplicationController
 	end
 
 	def invite
+		puts params
 		@user = User.find(params[:user_id])
+		@group = Group.find(params[:id])
+		i = Invite.create
+		@token = i.generate_token
+
 		# the user should have an email...check to make sure
 		if @user.email
-			mail(@user.email)
+			mail(@user.email, @token)
 			flash[:alert] = "Email sent to #{@user.username}"
 		else
 			# if the user does not have an email email the current_user
@@ -37,6 +42,10 @@ class InvitesController < ApplicationController
 		redirect_to user_groups_path(current_user)
 	end
 
+	def select_group
+		@user = User.find(params[:id])
+		@groups = current_user.groups
+	end
 
 
 

@@ -26,7 +26,8 @@
   post '/newgroup' => 'groups#create'
 
   # email user
-  get '/invite' => 'invites#invite', as: :invite_user
+  get '/invite/:user_id/group/:id' => 'invites#invite', as: :invite_user
+  get '/invite/:id/groups' => 'invites#select_group', as: :invite_user_groups
 
   # resources :followers, :only => [:create, :destroy]
   post '/update_follow_status' => 'users#update_follow_status', as: :update_follow_status

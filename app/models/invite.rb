@@ -1,4 +1,6 @@
 class Invite < ActiveRecord::Base
+
+	STATES=['sent', 'verified', 'rejected']
 	# before_create :generate_token
 	# before_save :check_user_existence
 

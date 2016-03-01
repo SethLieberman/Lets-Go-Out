@@ -1,0 +1,6 @@
+	<%= content_tag :h1, "Invite #{@user.username} to: "%>		
+
+	<% @groups.each do |g| %>
+	<div class="group-list"><%= link_to "#{g.title}", invite_user_path(@user.id, g.id)%>
+	</div>
+	<% end %>
