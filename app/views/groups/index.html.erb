@@ -1,28 +1,44 @@
 <%= content_tag :div, id: "group" do %>
-<h1 class="group-h"><%= "#{@user.username}'s Group Page" %></h1>
+	<h1 class="group-h"><%= "#{@user.username}'s Group Page" %></h1>
 
 
-<% if @current_user == @user %>
-<!-- form for creating new group -->
-<%= form_for Group.new, url: '/newgroup', html: {method: :post} do |f| %>
-			<!-- creating of group -->
-			<%= content_tag :div, id: "create-group" do %>
-				<%= content_tag :p, "Create a Group" %>
+	<% if @current_user == @user %>
+	<!-- form for creating new group -->
+		<%= form_for Group.new, url: '/newgroup', html: {method: :post} do |f| %>
+				<!-- creating of group -->
+					<%= content_tag :div, id: "create-group" do %>
+						<%= content_tag :p, "Create a Group" %>
+					
+							<%= f.text_field :title,required: true, placeholder: "title", id: "title-group", class: "" %>
+							<%= f.submit :Create, id: "group-submit" %>
+							<% end %>
+					<% end %>
+		<% end %>
 			
-					<%= f.text_field :title,required: true, placeholder: "title", id: "title-group", class: "" %>
-					<%= f.submit :Create, id: "group-submit" %>
+	<!-- List your groups -->
+		
+			<% @groups.each do |g| %>
+				<div class="group-list"><%= link_to "#{g.title}", user_group_path(@user.id, g.id)%>
+					<% if @current_user == @user %>
+
+						<span class="delete-group"><%= link_to "(Delete Group)", user_group_path(@current_user.id, g.id), {:method => :delete} %></span>
+					<% end %>
+				</div>
+			<% end %>
+		<%= content_tag :div, class: "your-friends" do %>
+		
+					<h3>Your Friends</h3>
+				
+				<% @user.user_friends.each do |u| %>
+						<%= content_tag :div, class: "eusers" do %>
+							<!-- avatar for each user -->
+							<div><%= image_tag u.avatar.url(:thumb) %></div>
+
+							<!-- links to othe user's page -->
+							<div><%= link_to"#{u.username}", user_path(u.id)%></div>
+							<div><%= link_to "Invite",invite_user_path({user_id: u.id}) %></div>
+					
 					<% end %>
 				<% end %>
-				<% end %>
-		
-<!-- List your groups -->
-	
-		<% @groups.each do |g| %>
-			<div class="group-list"><%= link_to "#{g.title}", user_group_path(@user.id, g.id)%>
-				<% if @current_user == @user %>
-
-			<span class="delete-group"><%= link_to "(Delete Group)", user_group_path(@current_user.id, g.id), {:method => :delete} %></span>
-				<% end %>
-			</div>
-	<% end %>
+		<% end %>
 <% end %>	

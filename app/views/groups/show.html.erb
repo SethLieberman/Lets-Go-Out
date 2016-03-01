@@ -23,8 +23,7 @@
 
 			<!-- title of post -->
 			<%= content_tag :div, id: "post" do %>
-				<%= f.text_field :title,required: true, placeholder: "Title", class: "post-input" %>
-				
+			
 
 				<!-- content of post -->
 				<%= content_tag :div, id: "content" do %>
@@ -47,15 +46,7 @@
 				
 					<%= link_to "delete", user_group_post_path(@current_user.id, @group.id ,post.id), {:method => :delete} %>
 				
-
-	
-	
-		<!-- form for user to comment on posts -->
-		<hr>
-	<%= form_for Comment.new, url: user_group_post_comments_path(@current_user.id, @group.id, post.id), html: {method: :post} do |f| %>
-		<%=f.text_area :content, placeholder: "Comment", id: "content-input", required: true %>
-		<div><%=f.submit :Post, id: "post-submit" %></div>
-
+			<hr>
 		
 		<!-- displaying comments -->
 				
@@ -66,6 +57,6 @@
 					<%= link_to "delete", user_group_post_comment_path(@current_user.id, @group.id ,post.id, comment.id), {:method => :delete} %>
 				<% end %>
 			<% end %>
-		<% end %>			
+				
 <% end %>
 <% end %>

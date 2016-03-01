@@ -9,12 +9,12 @@ class InvitesController < ApplicationController
 	    if @invite.recipient != nil 
 
 	       #send a notification email
-	       InviteMailer.existing_user_invite(@invite).deliver 
+	       SendGrid.existing_user_invite(@invite).deliver 
 
 	       #Add the user to the organization
 	       @invite.recipient.groups.push(@invite.group)
 	   else
-	   	InviteMailer.new_user_invite(@invite, new_user_registration_path(:invite_token => @invite.token)).deliver
+	   	SendGrid.new_user_invite(@invite, new_user_registration_path(:invite_token => @invite.token)).deliver
 	   end
 	else
 	     # oh no, creating an new invitation failed
@@ -23,12 +23,18 @@ class InvitesController < ApplicationController
 
 	def invite
 		@user = User.find(params[:user_id])
-		if @user.email = @user.email
-			mail(@email)
+		# the user should have an email...check to make sure
+		if @user.email
+			mail(@user.email)
+			flash[:alert] = "EMAIL SENT TO #{@user.username} CODE: #{@code}"
 		else
-			@current_user.email = user.email
+			# if the user does not have an email email the current_user
+			# @user.email = current_user.email
+			mail(@current_user.email)
+			flash[:alert] = "EMAIL SENT TO YOU  CODE: #{@code}"
+
 		end
-		redirect_to users_path
+		redirect_to user_groups_path(current_user)
 	end
 
 

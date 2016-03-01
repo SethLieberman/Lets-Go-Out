@@ -28,12 +28,11 @@ class ApplicationController < ActionController::Base
          m.to = @user.email
          m.from = current_user.email
          m.subject = 'Invite to Group'   
-         #passing the 'first name' into the body of email
-         m.text = 'Hello!'
+         m.text = "hello"
        end
 
        res = client.send(mail) 
-       puts res.code
+       puts @code = res.code
        puts res.body 
 
   end
