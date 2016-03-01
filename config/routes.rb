@@ -25,6 +25,9 @@
   post '/newcomment' => 'comments#create'
   post '/newgroup' => 'groups#create'
 
+  # email user
+  get '/invite' => 'invites#invite', as: :invite_user
+
   # resources :followers, :only => [:create, :destroy]
   post '/update_follow_status' => 'users#update_follow_status', as: :update_follow_status
 

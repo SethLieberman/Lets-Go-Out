@@ -22,12 +22,12 @@
 	<!-- display users information -->
 	
 	<%= content_tag :div, class:"profile-info"  do %>
+
 		<%= image_tag @current_user.avatar.url(:medium) %>
-		<div><%= @current_user.username %></div>
+		<div><%= @current_user.username %></div>	
 		<div><%= @current_user.fname %>
 		<%= @current_user.lname %></div>
-		<div><%= @current_user.zipcode %></div>
-		<div><%= @current_user.email %>	</div>
+		
 		<button class="edit-button">Edit</button>
 		<% end %>
 	<% end %>
@@ -59,7 +59,7 @@
 		<% if @current_user == @user %>
 			<% @groups.each do |g| %>
 				<!-- add places to your groups -->
-				<%= link_to "Add to #{g.title}", add_place_group_path(group_id: g.id, place_id: p.id), html: {method: :post}, class:"g"%>
+				<%= link_to "|Add to #{g.title}|", add_place_group_path(group_id: g.id, place_id: p.id), html: {method: :post}, class:"g"%>
 		<% end %>
 <% end %>
 <% end %>

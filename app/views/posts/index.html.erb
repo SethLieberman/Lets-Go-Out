@@ -9,11 +9,11 @@
 			<%= form_for Post.new, url: '/newpost', html: {method: :post} do |f| %>
 			<!-- title of post -->
 			<%= content_tag :div, id: "title" do %>
-				<%= f.text_field :title,required: true, placeholder: "title", id: "title-input", class: "post-input" %>
+				<%= f.text_field :title,required: true, placeholder: "Title", id: "title-input", class: "post-input" %>
 				<% end %>
 				<!-- content of post -->
 				<%= content_tag :div, id: "content" do %>
-				<%= f.text_area :content, required: true, placeholder: "content", id: "content-input", class: "post-input" %>
+				<%= f.text_area :content, required: true, placeholder: "Post", id: "content-input", class: "post-input" %>
 
 				<%= f.submit :Post, id: "post-submit" %>
 				<% end %>

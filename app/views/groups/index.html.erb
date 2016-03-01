@@ -1,5 +1,5 @@
-
-<h1><%= "#{@user.username}'s Group Page" %></h1>
+<%= content_tag :div, id: "group" do %>
+<h1 class="group-h"><%= "#{@user.username}'s Group Page" %></h1>
 
 
 <% if @current_user == @user %>
@@ -10,7 +10,7 @@
 				<%= content_tag :p, "Create a Group" %>
 			
 					<%= f.text_field :title,required: true, placeholder: "title", id: "title-group", class: "" %>
-					<%= f.submit :Submit, id: "group-submit" %>
+					<%= f.submit :Create, id: "group-submit" %>
 					<% end %>
 				<% end %>
 				<% end %>
@@ -18,10 +18,11 @@
 <!-- List your groups -->
 	
 		<% @groups.each do |g| %>
-			<div><%= link_to "#{g.title}", user_group_path(@user.id, g.id)%>
+			<div class="group-list"><%= link_to "#{g.title}", user_group_path(@user.id, g.id)%>
 				<% if @current_user == @user %>
 
-			<%= link_to "Delete Group", user_group_path(@current_user.id, g.id), {:method => :delete} %>
+			<span class="delete-group"><%= link_to "(Delete Group)", user_group_path(@current_user.id, g.id), {:method => :delete} %></span>
 				<% end %>
 			</div>
 	<% end %>
+<% end %>	

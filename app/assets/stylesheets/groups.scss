@@ -6,15 +6,14 @@
 
 .user-places{
 	font-size:1.5vw;
-	border:solid black 2px;
+	background-color:white;
 	padding:10px;
-	border-radius:20px;
-	width:500px;
+	width:300px;
 	display:inline-block;
-	margin-left:20px;
-	margin-right:20px;
+	margin-left:15px;
+	margin-right:15px;
 	margin-bottom:10px;
-	text-align:center;
+	border-radius:20px;
 }
 
 .post-card{
@@ -29,8 +28,7 @@
 	width:500px;
 	margin-bottom:50px;
 	text-align:center;	
-	// border:solid black 3px;
-
+	
 }
 
 #post-submit{
@@ -39,13 +37,29 @@
 }
 
 .post-input{	
-	font-size:30px;
+	font-size:20px;
 	text-align:center;
 	border:solid black 3px;
-
-
 }
 
 .group-places{
 	text-align:center;
+}
+
+#group{
+	margin: 0 auto;
+	width:500px;
+	text-align:center;
+}
+
+.group-list{
+	padding:10px;
+	font-size:2vw;
+}
+
+.group-h{
+	font-size:3vw;
+}
+.delete-group{
+	font-size:1.3vw;
 }

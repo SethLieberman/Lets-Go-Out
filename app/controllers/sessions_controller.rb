@@ -25,6 +25,7 @@ class SessionsController < ApplicationController
   		redirect_to user_path @user 
   	else
   		flash[:alert]="Login has failed"
+      puts "Login has failed" 
       redirect_to login_path
   	end
   end

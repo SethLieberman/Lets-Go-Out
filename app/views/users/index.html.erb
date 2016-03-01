@@ -14,6 +14,7 @@
 
 				<!-- links to othe user's page -->
 					<div><%= link_to"#{u.username}", user_path(u.id)%></div>
+					<div><%= link_to "email",invite_user_path({user_id: u.id}) %></div>
 				<% end %>
 			<% end %>
 	<% end %>
