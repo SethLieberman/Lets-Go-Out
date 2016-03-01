@@ -16,12 +16,15 @@
 
 
 body{
-	margin: 0;
-	margin-top: 150px;
+	margin: 0;	
 	font-family: 'Nunito', sans-serif;
 	background: white;	
 	color:#cd2c4d;
 
+}
+
+.container{
+	margin-top: 150px;
 }
 
 
@@ -74,11 +77,14 @@ body{
 }
 
 .flash-notice{
-	font-size: 3vw;
+	font-size: 2vw;
 	text-align: center;
 	margin:0 auto;
 	width: 450px;
-	color: #bbd1d2
+	color: #cd2c4d;
+	margin-bottom: -100px;
+	/*margin-top: -100px;*/
+	float: right;
 }	
 
 a{
@@ -90,3 +96,10 @@ a{
 	font-size: 1vw;
 }
 
+.page-header{
+  width: 650px;
+  font-size: 3vw;
+  margin: 0 auto;
+  text-decoration: underline;
+  text-align: center;
+}

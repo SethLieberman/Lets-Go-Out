@@ -5,7 +5,7 @@
 		<!-- display the people you follow -->
 	<%= content_tag :div, class: "your-users" do %>
 	
-			<h3>People you are following</h3>
+			<p class="page-header">People you are following</h3>
 			
 				<% @user.user_friends.each do |u| %>
 					<%= content_tag :div, class: "eusers" do %>
@@ -19,8 +19,9 @@
 	<% end %>
 <% end %>
 <hr>
+	<h2 class="page-header">All of the Users</h2>
 	<%= content_tag :div, class: "all-users" do %>
-	<h2>All of the Users</h2>
+	
 			<!-- displaying all users -->
 		
 			<% @users.each do |u| %>

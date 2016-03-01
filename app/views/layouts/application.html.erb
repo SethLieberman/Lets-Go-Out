@@ -23,29 +23,31 @@
 
 	<% if @current_user %>
 
-	<%= content_tag :div, id: "navbar" do %>
+		<%= content_tag :div, id: "navbar" do %>
 
-	<%= link_to "Hello #{@current_user.username}", user_path(@current_user.id), class:"nav" %>
+			<%= link_to "Hello #{@current_user.username}", user_path(@current_user.id), class:"nav" %>
 
-	<%= link_to "Other Users", users_path, class:"nav" %>
+			<%= link_to "Other Users", users_path, class:"nav" %>
 
-	<% if @current_user %>	
+	
 
-	<%= link_to "#{@current_user.username}'s Groups", user_groups_path(@current_user.id), class:"nav" %>
-	<%end%>
+			<%= link_to "#{@current_user.username}'s Groups", user_groups_path(@current_user.id), class:"nav" %>
+		
 
-	<%= link_to "Search Places", places_path, class:"nav"%>
+			<%= link_to "Search Places", places_path, class:"nav"%>
 
 
-	<%= link_to "Signout", logout_user_path, method: :delete, class:"nav" %>
+			<%= link_to "Signout", logout_user_path, method: :delete, class:"nav" %>
+
+		<% end %>
 
 	<% end %>
-
-	<% end %>
-
-	<%= yield %>
 	<div class="flash-notice">
 	<%= flash[:alert] if flash[:alert] %>
+	</div>	
+	<div class="container">
+	<%= yield %>
+	</div>
 	<end>
 </body>
 </html>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301181554) do
+ActiveRecord::Schema.define(version: 20160301195558) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20160301181554) do
     t.datetime "updated_at", null: false
     t.integer  "group_id"
     t.integer  "user_id"
+    t.string   "token"
   end
 
   create_table "meetup_places", force: :cascade do |t|

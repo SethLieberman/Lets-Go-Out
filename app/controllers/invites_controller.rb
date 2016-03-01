@@ -26,12 +26,12 @@ class InvitesController < ApplicationController
 		# the user should have an email...check to make sure
 		if @user.email
 			mail(@user.email)
-			flash[:alert] = "EMAIL SENT TO #{@user.username} CODE: #{@code}"
+			flash[:alert] = "Email sent to #{@user.username}"
 		else
 			# if the user does not have an email email the current_user
 			# @user.email = current_user.email
 			mail(@current_user.email)
-			flash[:alert] = "EMAIL SENT TO YOU  CODE: #{@code}"
+			flash[:alert] = "Email sent to you"
 
 		end
 		redirect_to user_groups_path(current_user)

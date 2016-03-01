@@ -15,7 +15,7 @@
   # You can have the root of your site routed with "root"
   root 'sessions#new'
 
-  get 'login' => 'sessions#new'
+  get 'login' => 'sessions#new', as: :login
   post 'search' => 'places#index', as: :search
   get 'search' => 'places#index'
   post 'post_login' => 'sessions#create', as: :login_user
