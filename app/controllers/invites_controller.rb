@@ -49,11 +49,25 @@ class InvitesController < ApplicationController
 		@groups = current_user.groups
 	end
 
-  # private
+	def accept_token
 
-  # def invite_params
-  #   params.require(:invite).permit(:group_id, :user_id, :states, :token)
-  # end
+		# we need token
+		# token must be present and matched
+		# connect that use to group
+		@token = params[:invite_token]
+		@invite = Invite.where(token: @token).first
+		puts "INVITE IS #{@invite.inspect}"
+		# find the group
+		@group = Group.find(@invite.group_id)
+		# find the user
+		@user = User.find(@invite.user_id)
+		# add the invited user to the specific group
+		@group.users.push(@user)
+
+		redirect_to root_path
+		flash[:alert] = "You have been added to the group"
+		
+	end
 
 
 end

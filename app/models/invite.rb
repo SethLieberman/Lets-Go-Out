@@ -19,6 +19,9 @@ class Invite < ActiveRecord::Base
 		self.states = 0
 	end
 
+	def accept_token
+		
+	end
 
 	# belongs_to :user_group
 	# belongs_to :sender, :class_name => 'User'

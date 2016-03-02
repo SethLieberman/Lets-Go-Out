@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   	end
   end
 
-  def mail(email, token="")
+  def mail(email, token="seth")
 
     client = SendGrid::Client.new do |c|
       c.api_key = ENV['SENDGRID_API_KEY']
@@ -28,7 +28,8 @@ class ApplicationController < ActionController::Base
          m.to = @user.email
          m.from = current_user.email
          m.subject = 'Invite to Group'   
-         m.text = "Your token is #{token}, you were invited by #{current_user.username}"
+         m.text = "Your token is http://localhost:3000/accept_invite/#{token}, you were invited by #{current_user.username} to #{@group.title}"
+        
        end
 
        res = client.send(mail) 

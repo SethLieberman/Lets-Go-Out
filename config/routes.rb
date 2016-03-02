@@ -29,6 +29,9 @@
   get '/invite/:user_id/group/:id' => 'invites#invite', as: :invite_user
   get '/invite/:id/groups' => 'invites#select_group', as: :invite_user_groups
 
+  # sending token as link to user to add to group
+  get '/accept_invite/:invite_token' => 'invites#accept_token', as: :accept_token
+
   # resources :followers, :only => [:create, :destroy]
   post '/update_follow_status' => 'users#update_follow_status', as: :update_follow_status
 
