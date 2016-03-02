@@ -5,10 +5,10 @@
 		<!-- display the people you follow -->
 	<%= content_tag :div, class: "your-users" do %>
 	
-			<p class="page-header">People you are following</h3>
+			<p class="page-header">People You Are Following</h3>
 			
 				<% @user.user_friends.each do |u| %>
-					<%= content_tag :div, class: "eusers" do %>
+					<%= content_tag :div, class: "e-users" do %>
 				<!-- avatar for each user -->
 				<div><%= image_tag u.avatar.url(:thumb) %></div>
 
@@ -19,7 +19,7 @@
 	<% end %>
 <% end %>
 <hr>
-	<h2 class="page-header">All of the Users</h2>
+	<h2 class="page-header">All Of The Users</h2>
 	<%= content_tag :div, class: "all-users" do %>
 	
 			<!-- displaying all users -->

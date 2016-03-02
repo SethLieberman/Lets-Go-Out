@@ -91,7 +91,7 @@ function callback(results, status){
 		for (var i = 0; i < results.length; i++){
 			markers.push(createMarker(results[i]));
 			place = results[i];
-			$('#thing').prepend("<h3>"+ place.name +", "+ "Rated" +" "+ place.rating + "</h3>")
+			$('#thing').prepend("<h3>"+ place.name +", "+ "Rated" +" "+ place.rating + " " + "</h3>")
 
 		}
 	}

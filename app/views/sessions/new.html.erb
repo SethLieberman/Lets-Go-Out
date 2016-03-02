@@ -18,20 +18,14 @@
 <h1>Sign Up</h1>
 
 <%= form_for @user_signing_in do |f| %>
-<div><%=f.label :Email%></div>
-<div><%=f.text_field :email, required: true %></div>
-<div><%=f.label :Last_Name%></div>
-<div><%=f.text_field :lname, required: true %></div>
-<div><%=f.label :First_Name%></div>
-<div><%=f.text_field :fname, required: true %></div>
-<div><%=f.label :username%></div>
-<div><%=f.text_field :username, maxlength: 10, required: true %></div>
-<div><%=f.label :zipcode%></div>
-<div><%=f.text_field :zipcode, required: true %></div>
-<div><%=f.label :Password %></div>
-<div><%=f.password_field :password, required: true  %></div>
-<div><%=f.label :password_confirmation%></div>
-<div><%=f.password_field :password_confirmation, required: true %></div>
+
+<div><%=f.text_field :username, placeholder: "Username", maxlength: 10, required: true %></div>
+<div><%=f.text_field :email, placeholder: "Email", required: true %></div>
+<div><%=f.text_field :lname, placeholder: "Last Name", required: true %></div>
+<div><%=f.text_field :fname, placeholder: "First Name",required: true %></div>
+<div><%=f.text_field :zipcode, placeholder: "Zipcode",required: true %></div>
+<div><%=f.password_field :password, placeholder: "Password", required: true  %></div>
+<div><%=f.password_field :password_confirmation, placeholder: "Password Confirmation", required: true %></div>
 <div><%= f.file_field :avatar %></div>
 <div><%=f.submit :"Sign Up" %></div>
 <% end %> 

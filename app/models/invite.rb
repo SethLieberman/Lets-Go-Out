@@ -1,7 +1,7 @@
 class Invite < ActiveRecord::Base
 
 	STATES=['sent', 'verified', 'rejected']
-	# before_create :generate_token
+	before_create :generate_token, :generate_state
 	# before_save :check_user_existence
 
 	# def check_user_existence
@@ -13,6 +13,10 @@ class Invite < ActiveRecord::Base
 	
 	def generate_token
 		self.token = Digest::SHA1.hexdigest([self.group_id, Time.now, rand].join)
+	end
+
+	def generate_state
+		self.states = 0
 	end
 
 

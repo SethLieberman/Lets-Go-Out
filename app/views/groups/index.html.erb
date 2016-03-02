@@ -31,7 +31,7 @@
 					<h3 class="page-header">Your Friends</h3>
 				
 				<% @user.user_friends.each do |u| %>
-						<%= content_tag :div, class: "eusers" do %>
+						<%= content_tag :div, class: "e-users" do %>
 							<!-- avatar for each user -->
 							<div><%= image_tag u.avatar.url(:thumb) %></div>
 
