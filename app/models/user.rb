@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 	has_attached_file :avatar, styles: { medium: "200x200>", thumb: "100x100>" }, default_url: "/images/:style/missing1.png"
   	validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
-	has_many :groups
+	has_many :owned_groups, class_name: "Group", foreign_key: "owner_id"
 
 	has_many :shared_groups, through: :user_groups
 	has_many :user_groups

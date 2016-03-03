@@ -30,11 +30,8 @@
 
 			<%= link_to "Hello #{@current_user.username}", user_path(@current_user.id), class:"nav" %>
 
-			<%= link_to "Other Users", users_path, class:"nav" %>
-
-	
-
-			<%= link_to "#{@current_user.username}'s Groups", user_groups_path(@current_user.id), class:"nav" %>
+		
+			<%= link_to "Groups and Friends", user_groups_path(@current_user.id), class:"nav" %>
 		
 
 			<%= link_to "Search Places", places_path, class:"nav"%>

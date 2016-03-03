@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
     @users = User.all
     @posts = Post.all
-    @groups = @user.groups
+    @groups = @user.owned_groups
     @comments = Comment.all    
     @comments = @comments.sort_by {|comment| comment.created_at}.reverse
     @posts = @posts.sort_by {|post| post.created_at }.reverse
@@ -57,36 +57,38 @@ def update_follow_status
     current_user.user_friends.push @user_to_follow
 
   end
-  redirect_to users_path
+  redirect_to user_groups_path(current_user)
 end
 
+
+# add a place to a group
 def add_place_group
-
-    @place = Place.find(params[:place_id])
-    @group = Group.find(params[:group_id])
-    puts "PLACE IS #{@place}"
-    puts "GROUP IS #{@group}"
-    @group.places.push(@place)
-    puts "******************$$$$$$$$"
-    redirect_to user_group_path(current_user, @group.id)
+  @place = Place.find(params[:place_id])
+  @group = Group.find(params[:group_id])
+  puts "PLACE IS #{@place}"
+  puts "GROUP IS #{@group}"
+  @group.places.push(@place)
+  puts "******************$$$$$$$$"
+  redirect_to user_group_path(current_user, @group.id)
 end
 
+# add_to_group page that lists the groups user can add the restaurants to
 def add_to_group
   @user = current_user
-  @groups = @user.groups
+  @groups = @user.shared_groups
   # this list all the places
   # @place = Place.all
-  @place = Place.find(params[:id])
+  @place = Place.find(params[:place_id])
 end 
 
-  private
-  def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :lname, :fname, :username, :zipcode, :avatar)
-  end
+private
+def user_params
+  params.require(:user).permit(:email, :password, :password_confirmation, :lname, :fname, :username, :zipcode, :avatar)
+end
 
-  def update_params
-    params.require(:user).permit(:username, :email, :zipcode, :lname, :fname, :zipcode, :avatar)
-  end
-  
+def update_params
+  params.require(:user).permit(:username, :email, :zipcode, :lname, :fname, :zipcode, :avatar)
+end
+
 end
 

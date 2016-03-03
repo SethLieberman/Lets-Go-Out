@@ -1,12 +1,18 @@
-	<% @group.users.each do |u| %>
-	<%= u.username %> <br>
-	<%end%>
+
 
 	<%= content_tag :div, class:"group-places" do %>
-	<h1>Hello <%= "Welcome to #{@group.title}" %></h1>
-
+	<h1 class="page-header">Hello <%= "Welcome to #{@group.title}" %></h1>
+	<%= content_tag :div, class:"friends-group" do %>
+	
+	<h2>Friends in the group</h2>
+	<% @group.users.each do |u| %>
+	|<%= u.username %>|
+	<%end%>
+	<%end%>
+	
 	<!-- shows places that user adds to group -->
-
+<hr>
+	<%= content_tag :div, class:"place-container" do %>
 	<% @group.places.each do |place| %>
 	<%= content_tag :div, class:"group-user-places" do %>
 	<div><%= place.placename%></div>
@@ -14,13 +20,11 @@
 	<% end%>
 	<% end %>
 	<% end %>
-	<br>
-	<br>
-	<br>
-	<br>
+	<% end %>
 
 	<!-- creates a new post -->
 	<% if @current_user == @user %>
+	<%= content_tag :div, id: "post-container" do %>
 	<%= content_tag :div, id: "postform" do %>
 
 	<%= form_for Post.new, url: user_group_posts_path(@current_user.id, @group.id), html: {method: :post} do |f| %>
@@ -31,7 +35,7 @@
 
 	<!-- content of post -->
 	<%= content_tag :div, id: "content" do %>
-	<%= f.text_area :content, required: true, placeholder: "Post", class: "post-input" %>
+	<%= f.text_area :content, required: true, placeholder: "Talk to me!", class: "post-input" %>
 	<div>
 		<%= f.submit :Post, id: "post-submit" %>
 	</div>
@@ -61,6 +65,6 @@
 	<%= link_to "delete", user_group_post_comment_path(@current_user.id, @group.id ,post.id, comment.id), {:method => :delete} %>
 	<% end %>
 	<% end %>
-
+	<% end %>
 	<% end %>
 	<% end %>

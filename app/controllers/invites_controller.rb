@@ -46,7 +46,7 @@ class InvitesController < ApplicationController
 
 	def select_group
 		@user = User.find(params[:id])
-		@groups = current_user.groups
+		@groups = current_user.owned_groups
 	end
 
 	def accept_token

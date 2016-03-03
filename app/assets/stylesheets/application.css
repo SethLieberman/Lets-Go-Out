@@ -97,9 +97,13 @@ a{
 }
 
 .page-header{
-  width: 650px;
+  width: 850px;
   font-size: 3vw;
   margin: 0 auto;
   text-decoration: underline;
   text-align: center;
+}
+
+.add-place{
+	text-align: center;
 }

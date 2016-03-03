@@ -17,7 +17,7 @@
 			
 	<!-- List your groups -->
 		
-			<% @groups.each do |g| %>
+			<% @current_user.owned_groups.each do |g| %>
 				<div class="group-list"><%= link_to "#{g.title}", user_group_path(@user.id, g.id)%>
 					<% if @current_user == @user %>
 
@@ -47,9 +47,33 @@
 
 							<!-- links to othe user's page -->
 							<div><%= link_to"#{u.username}", user_path(u.id)%></div>
-							<div><%= link_to "Invite", invite_user_groups_path(u.id) %></div>
+							<div><%= link_to "Invite to Group", invite_user_groups_path(u.id) %></div>
 					
 					<% end %>
 				<% end %>
 		<% end %>
+		<hr>
+		<h2 class="page-header">All Of The Users</h2>
+	<%= content_tag :div, class: "all-users" do %>
+	
+			<!-- displaying all users -->
+		
+			<% @users.each do |u| %>
+				<% if u!= @user%>
+				<span class="uname"><%= u.username %></span>
+
+				<% if @user.user_friends.include? u%>
+					<%= link_to "(Unfollow)", update_follow_status_path({user_id: u.id}), :method => :post%>
+
+				<% else %>
+					<%= link_to "(Follow)", update_follow_status_path({user_id: u.id }), :method => :post%>
+
+				<% end %>
+				<% end %>
+				
+	
+	<% end %>		
+			<% end %>
+
+
 <% end %>	

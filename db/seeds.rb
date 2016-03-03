@@ -21,11 +21,11 @@ User.create([
 	])
 
 Group.create([
-	{title:"Lieberman's Group", user_id: 1, owner_id: 1},
-	{title:"Friends Forever", user_id: 1},
-	{title:"HighSchool", user_id: 2},
-	{title:"Party Group", user_id: 3},
-	{title:"HoneyMoon", user_id: 4},
-	{title:"Bro's Fo Sho", user_id: 5},
-	{title:"Brothers", user_id: 6}
+	{title:"Lieberman's Group", owner_id: 1},
+	{title:"Friends Forever", owner_id: 1},
+	{title:"HighSchool", owner_id: 2},
+	{title:"Party Group", owner_id: 2},
+	{title:"HoneyMoon", owner_id: 3},
+	{title:"Bro's Fo Sho", owner_id: 3},
+	{title:"Brothers", owner_id: 3}
 	])

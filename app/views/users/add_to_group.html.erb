@@ -1,11 +1,13 @@
-Pick a place to add to your group
+<!-- @user, @place, @group are variables to use -->
 
+<%= content_tag :div, class:"add-place" do %>
+<%= "Which Group would you like to add #{@place.placename} to?" %>
+		
 		<% if @current_user == @user %>
-				<% @user.groups.each do |g| %>
-				
-				<% @user.places.each do |p| %>
+				<% @current_user.owned_groups.each do |g| %>
 					<!-- add places to your groups -->
-					<div><%= link_to "|Add to #{g.title}|", add_place_group_path(group_id: g.id, place_id: p.id), html: {method: :post}, class:"g"%></div>
+					<div><%= link_to "Add to #{g.title}", add_place_group_path(place_id: @place.id, group_id: g.id), html: {method: :post}, class:"g"%></div>
 			<% end %>
 		<% end %>
-<% end %>
+<% end %>	
+
