@@ -18,7 +18,7 @@
 //= require underscore
 //= require gmaps/google
 
-$( document).on("page:change ready ajax:success", function() {
+$(document).on("page:change ready ajax:success", function() {
 
 	$(".editp").hide();
 
@@ -125,6 +125,7 @@ google.maps.event.addListener(marker, 'click', function(){
 // this is calling the popup above for the infowindow
 infowindow.setContent(popup);
 console.log(place)
+
 // add place to favorites list
 $("#addme").click(function() {	
 	$.ajax({

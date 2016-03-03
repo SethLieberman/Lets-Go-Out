@@ -71,6 +71,12 @@ def add_place_group
     redirect_to user_group_path(current_user, @group.id)
 end
 
+def add_to_group
+  @user = current_user
+  @groups = @user.groups
+  @place = Place.all
+end 
+
   private
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :lname, :fname, :username, :zipcode, :avatar)

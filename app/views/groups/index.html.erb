@@ -27,14 +27,15 @@
 			<% end %>		
 
 			<% @current_user.shared_groups.each do |g| %>
-				<div class="group-list"><%= link_to "#{g.title}", user_group_path(@user.id, g.id)%>
-					<% if @current_user == @user %>
+				<% if g.owner != @current_user %>
 
-						<span class="delete-group"><%= link_to "(Delete Group)", user_group_path(@current_user.id, g.id), {:method => :delete} %></span>
-					<% end %>
+				<div class="group-list"><%= link_to "#{g.title}", user_group_path(@user.id, g.id)%>
+					
 				</div>
 			<% end %>
+			<% end %>
 			<hr>
+
 		<%= content_tag :div, class: "your-friends" do %>
 		
 					<h3 class="page-header">Your Friends</h3>

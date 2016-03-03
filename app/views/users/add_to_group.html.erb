@@ -1,0 +1,11 @@
+Pick a place to add to your group
+
+		<% if @current_user == @user %>
+				<% @user.groups.each do |g| %>
+				
+				<% @user.places.each do |p| %>
+					<!-- add places to your groups -->
+					<div><%= link_to "|Add to #{g.title}|", add_place_group_path(group_id: g.id, place_id: p.id), html: {method: :post}, class:"g"%></div>
+			<% end %>
+		<% end %>
+<% end %>

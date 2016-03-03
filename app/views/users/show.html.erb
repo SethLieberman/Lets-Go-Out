@@ -56,12 +56,7 @@
 	</div>
 	
 	<hr>
-		<% if @current_user == @user %>
-			<% @groups.each do |g| %>
-				<!-- add places to your groups -->
-				<%= link_to "|Add to #{g.title}|", add_place_group_path(group_id: g.id, place_id: p.id), html: {method: :post}, class:"g"%>
-		<% end %>
-<% end %>
+		<%= link_to "Add to Group", add_to_group_path %>
 <% end %>
 <% end %>
 <% end %>

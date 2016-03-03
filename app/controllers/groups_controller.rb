@@ -4,7 +4,9 @@ class GroupsController < ApplicationController
 
 	def create
 		@group = Group.create(group_params) 
-		@current_user.groups.push
+		@current_user.shared_groups.push @group
+		@group.owner = current_user
+		@group.save
 		redirect_to user_groups_path(@current_user.id)
 	end
 

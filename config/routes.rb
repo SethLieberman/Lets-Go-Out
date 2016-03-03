@@ -40,7 +40,8 @@
 # add a place to group
   get '/add_place_group' => 'users#add_place_group', as: :add_place_group
 
-
+# get to add place to group page
+  get '/add_to_group' => 'users#add_to_group', as: :add_to_group
 
   # get '/user/:id/followers' => 'users#followers', as: 'followers'
   # Example of regular route:
