@@ -74,7 +74,9 @@ end
 def add_to_group
   @user = current_user
   @groups = @user.groups
-  @place = Place.all
+  # this list all the places
+  # @place = Place.all
+  @place = Place.find(params[:id])
 end 
 
   private
