@@ -8,7 +8,7 @@
 	<!-- shows places that user adds to group -->
 
 	<% @group.places.each do |place| %>
-	<%= content_tag :div, class:"user-places" do %>
+	<%= content_tag :div, class:"group-user-places" do %>
 	<div><%= place.placename%></div>
 	<%= place.location %>
 	<% end%>

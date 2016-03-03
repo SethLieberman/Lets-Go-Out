@@ -25,6 +25,10 @@ $(document).on("page:change ready ajax:success", function() {
 	$(".edit-button").click(function() {
 		$(".editp").show(300);
 	});
+
+	setTimeout(function(){
+    $('.flash-notice').fadeOut();
+    }, 4000);
 	
 	var query ="";
 	var map;
