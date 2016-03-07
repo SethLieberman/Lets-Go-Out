@@ -7,8 +7,7 @@
 	text-align: center;
 	margin: 0 auto;
 	margin-top:100px;
-	width:400px;
-	border: solid black 2px;
+	width:400px;	
 }
 
 #lets-go{
@@ -17,4 +16,23 @@
 	text-align:center;	
 	margin-bottom:-100px;
 	margin-top:-50px;
+}
+
+.in-landing{
+	border-style: solid;
+	border-color: blue red green yellow;
+}
+
+.in-landing:hover{
+	border-color: red blue yellow green;
+
+	// transform: rotate(90deg);
+}
+
+#bg{
+	position: fixed;
+	z-index:-1;
+	background-repeat: no-repeat;
+	width:100%;
+	background-position: center;
 }

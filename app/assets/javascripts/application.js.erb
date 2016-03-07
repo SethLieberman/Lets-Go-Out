@@ -18,7 +18,8 @@
 //= require underscore
 //= require gmaps/google
 
-$(document).on("page:change ready ajax:success", function() {
+$(document).on("page:update page:change ready ajax:success", function() {
+	console.log("SETH BREDTH");
 
 	$(".editp").hide();
 
@@ -27,8 +28,8 @@ $(document).on("page:change ready ajax:success", function() {
 	});
 
 	setTimeout(function(){
-    $('.flash-notice').fadeOut();
-    }, 3500);
+		$('.flash-notice').fadeOut();
+	}, 3500);
 	
 	var query ="";
 	var map;
@@ -130,23 +131,23 @@ google.maps.event.addListener(marker, 'click', function(){
 infowindow.setContent(popup);
 console.log(place)
 
+
+infowindow.open(map, this);
 // add place to favorites list
-$("#addme").click(function() {	
+$("#addme").on('click',function() {
+	console.log("HELLOOOOOO SETH")	
 	$.ajax({
 		type: "POST",     
 		url: "/places",     
 		data: {name: place.name, location: place.vicinity, google_id: place.place_id, lat: place.geometry.location.lat(), lng: place.geometry.location.lng()},
 		success: function (d) {         
-			console.log('data returned is: ' + d);     
+			console.log('data returned is: GOOD');     
 		},
 		error: function(data){
 			console.log("NOT WORKING: "+ data);
 		} 
 	})
-
 });
-
-infowindow.open(map, this);
 });
 return marker;
 }
