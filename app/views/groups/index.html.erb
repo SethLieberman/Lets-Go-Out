@@ -1,31 +1,31 @@
 <%= content_tag :div, id: "group" do %>
 	<h1 class="page-header"><%= "#{@user.username}'s Group Page" %></h1>
 
-
-	<% if @current_user == @user %>
-	<!-- form for creating new group -->
-		<%= form_for Group.new, url: '/newgroup', html: {method: :post} do |f| %>
-				<!-- creating of group -->
-					<%= content_tag :div, id: "create-group" do %>
-						<%= content_tag :p, "Create a Group" %>
-					
-							<%= f.text_field :title,required: true, placeholder: "title", id: "title-group", class: "" %>
-							<%= f.submit :Create, id: "group-submit" %>
-							<% end %>
-					<% end %>
-		<% end %>
-			
-	<!-- List your groups -->
+	
+		<% if @current_user == @user %>
+		<!-- form for creating new group -->
+			<%= form_for Group.new, url: '/newgroup', html: {method: :post} do |f| %>
+					<!-- creating of group -->
+						<%= content_tag :div, id: "create-group" do %>
+							<%= content_tag :p, "Create a Group", class: "create" %>
+						
+								<%= f.text_field :title,required: true, placeholder: "title", id: "title-group", class: "group-title" %>
+								<%= f.submit :Create, id: "group-submit" %>
+								<% end %>
+						<% end %>
+			<% end %>
 		
+	<!-- List your groups -->
+	<%= content_tag :div, id: "user-group" do %>	
 			<% @current_user.owned_groups.each do |g| %>
-				<div class="group-list"><%= link_to "#{g.title}", user_group_path(@user.id, g.id)%>
+				<span class="group-list"><%= link_to "#{g.title}", user_group_path(@user.id, g.id)%>
 					<% if @current_user == @user %>
 
 						<span class="delete-group"><%= link_to "(Delete Group)", user_group_path(@current_user.id, g.id), {:method => :delete} %></span>
 					<% end %>
-				</div>
+				</span>
 			<% end %>		
-
+	
 			<% @current_user.shared_groups.each do |g| %>
 				<% if g.owner != @current_user %>
 
@@ -34,8 +34,9 @@
 				</div>
 			<% end %>
 			<% end %>
-			<hr>
-
+			
+	<% end %>
+		<hr>	
 		<%= content_tag :div, class: "your-friends" do %>
 		
 					<h3 class="page-header">Your Friends</h3>
