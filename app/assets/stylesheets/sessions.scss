@@ -16,17 +16,27 @@
 	text-align:center;	
 	margin-bottom:-100px;
 	margin-top:-50px;
+	color:white;
 }
 
 .in-landing{
 	border-style: solid;
-	border-color: blue red green yellow;
+	border-width: 10px;
+	border-color: #cd2c4d white #cd2c4d white;
 }
 
 .in-landing:hover{
-	border-color: red blue yellow green;
+	border-color: white #cd2c4d white #cd2c4d;
 
 	// transform: rotate(90deg);
+}
+
+.log-in{
+	color:white;
+}
+
+.sign-up{
+	color:white;
 }
 
 #bg{
@@ -35,4 +45,8 @@
 	background-repeat: no-repeat;
 	width:100%;
 	background-position: center;
+}
+
+.buffer{
+	margin-top: 100px;
 }

@@ -1,6 +1,5 @@
 
 
- <%= image_tag "/../images/bg.png", id:"bg" %>
 <!-- this page you can sign up or log in -->
 <%= content_tag :p, "Lets Go Out!", id: "lets-go"%>
 <%= content_tag :div, id: "landing" do %>
@@ -8,7 +7,7 @@
 <% if !@current_user %>
 
 <!-- for user to sign in -->
-<h1>Log In</h1>
+<h1 class="log-in">Log In</h1>
 
 <%= form_tag login_user_path do %>
 <div><%= text_field_tag :email,"", placeholder:"Email" %></div>
@@ -18,7 +17,7 @@
 
 
 <!-- for new guests to sign up -->
-<h1>Sign Up</h1>
+<h1 class="sign-up">Sign Up</h1>
 
 <%= form_for @user_signing_in do |f| %>
 

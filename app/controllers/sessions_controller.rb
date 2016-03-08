@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   # layout nil
   # layout 'application', :except => :view
-
+  layout 'home'
 
   def new
     @user_signing_in = User.new

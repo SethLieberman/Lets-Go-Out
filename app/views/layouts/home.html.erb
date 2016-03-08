@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lets Go Out</title>
+	<!-- src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js">
+-->
+<!-- links to flipcard library -->
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://cdn.rawgit.com/nnattawat/flip/v1.0.19/dist/jquery.flip.min.js"></script>
+<!-- google maps API -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA26o9IPfAhrYGb1YJDMDBFDZRhAgQUC_w&libraries=places"></script>
+
+<!-- 	src='//google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox_packed.js' type='text/javascript'> -->
+<!-- only if you need custom infoboxes -->
+
+<!-- old code that broke-hold until 4/1/16 -->
+<!-- markers = handler.addMarkers(<%=raw @hash.to_json %>); -->
+
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<link href='https://fonts.googleapis.com/css?family=Rum+Raisin|Nunito' rel='stylesheet' type='text/css'>
+<%= csrf_meta_tags %>
+
+</head>
+<body class="home">
+
+	<div class="flash-notice">
+		<%= flash[:alert] if flash[:alert] %>
+	</div>	
+	<div class="container ">
+			<%= yield %>
+	</div>
+	<end>
+	</body>
+	</html>
