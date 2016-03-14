@@ -24,6 +24,7 @@
   post '/newpost' => 'posts#create'
   post '/newcomment' => 'comments#create'
   post '/newgroup' => 'groups#create'
+  delete '/leavegroup' => 'groups#leave_group', as: :leave_group
 
   # email user
   get '/invite/:user_id/group/:id' => 'invites#invite', as: :invite_user

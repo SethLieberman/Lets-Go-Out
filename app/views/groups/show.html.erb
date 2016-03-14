@@ -7,6 +7,7 @@
 				<h2>Friends in the group</h2>
 					<% @group.users.each do |u| %>
 						|<%= u.username %>|
+						 <!-- link_to "delete", leave_group_path(user_id: u.id), {:method => :delete} %> -->
 					<%end%>
 			<%end%>
 

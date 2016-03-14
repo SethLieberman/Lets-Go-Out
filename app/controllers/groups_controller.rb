@@ -41,6 +41,12 @@ class GroupsController < ApplicationController
 		redirect_to user_groups_path(@user.id, @group.id)
 	end
 
+	def leave_group
+		# @user = User.find(params[:user_id])
+		puts '***************&&&&&&&&&&&&^^^^^^^^^^^^'
+		redirect_to user_path(current_user.id)
+	end
+
 	private 
 
 	def group_params

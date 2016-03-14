@@ -35,6 +35,7 @@
 
 <% else%>
 <h1>Logged In!</h1>
+<h1><%= link_to "Signout", logout_user_path, method: :delete, class:"nav" %></h1>
 <% end %>
 <% end %>
 
