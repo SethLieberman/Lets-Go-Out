@@ -2,7 +2,7 @@
 <h2 class="page-header">Find Places To Go</h2>
 <%= content_tag :div, class:"search" do %>
 
-<%= form_tag search_path, remote: :true, method: :post do %>
+<%= form_tag search_path, remote: :true, method: :post, class:"search-bar" do %>
 <%= text_field_tag :search %>
 <%= submit_tag "SEARCH" %>
 <% end %>
