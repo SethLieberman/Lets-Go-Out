@@ -1,43 +1,42 @@
+
+
 <!-- this page you can sign up or log in -->
-
+<%= content_tag :p, "Lets Go Out!", id: "lets-go"%>
 <%= content_tag :div, id: "landing" do %>
-
+<div class="in-landing">
 <% if !@current_user %>
 
 <!-- for user to sign in -->
-<h1>LogIn</h1>
+<h1 class="log-in">Log In</h1>
 
 <%= form_tag login_user_path do %>
-<div><%= text_field_tag :email,"", placeholder:"Email" %></div>
-<div><%= password_field_tag :password,"", placeholder: "password" %></div>
+<div><%= text_field_tag :email,"", placeholder:"Email", class: "l-input" %></div>
+<div><%= password_field_tag :password,"", placeholder: "password", class: "l-input" %></div>
 <div><%= submit_tag :"Log In" %> </div>
 <% end %> 
 
 
 <!-- for new guests to sign up -->
-<h1>Sign Up</h1>
+<h1 class="sign-up">Sign Up</h1>
 
 <%= form_for @user_signing_in do |f| %>
-<div><%=f.label :Email%></div>
-<div><%=f.text_field :email, required: true %></div>
-<div><%=f.label :Last_Name%></div>
-<div><%=f.text_field :lname, required: true %></div>
-<div><%=f.label :First_Name%></div>
-<div><%=f.text_field :fname, required: true %></div>
-<div><%=f.label :username%></div>
-<div><%=f.text_field :username, maxlength: 10, required: true %></div>
-<div><%=f.label :zipcode%></div>
-<div><%=f.text_field :zipcode, required: true %></div>
-<div><%=f.label :Password %></div>
-<div><%=f.password_field :password, required: true  %></div>
-<div><%=f.label :password_confirmation%></div>
-<div><%=f.password_field :password_confirmation, required: true %></div>
-<div><%= f.file_field :avatar %></div>
+
+<div><%=f.text_field :username, placeholder: "Username", maxlength: 14, required: true, class: "l-input" %></div>
+<div><%=f.text_field :email, placeholder: "Email", required: true, class: "l-input" %></div>
+<div><%=f.text_field :lname, placeholder: "Last Name", required: true, class: "l-input" %></div>
+<div><%=f.text_field :fname, placeholder: "First Name",required: true , class: "l-input"%></div>
+<div><%=f.text_field :zipcode, placeholder: "Zipcode",required: true, class: "l-input" %></div>
+<div><%=f.password_field :password, placeholder: "Password", required: true, class: "l-input"  %></div>
+<div><%=f.password_field :password_confirmation, placeholder: "Password Confirmation", required: true, class: "l-input" %></div>
+<div><%= f.label :Choose_a_Photo, class: "a-input" %></div>
+<div><%= f.file_field :avatar, class: "l-input"%></div>
 <div><%=f.submit :"Sign Up" %></div>
 <% end %> 
 
 <% else%>
 <h1>Logged In!</h1>
+<h1><%= link_to "Signout", logout_user_path, method: :delete, class:"nav" %></h1>
 <% end %>
 <% end %>
 
+</div>

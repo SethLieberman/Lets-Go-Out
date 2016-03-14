@@ -18,13 +18,21 @@
 //= require underscore
 //= require gmaps/google
 
+$(document).on("page:update page:change ready ajax:success", function() {
 
+	$(".editp").hide();
 
-$( document).on("page:change ready ajax:success", function() {
+	$(".edit-button").click(function() {
+		$(".editp").show(300);
+	});
 
+	setTimeout(function(){
+		$('.flash-notice').fadeOut();
+	}, 3500);
+	
+	var query ="";
 	var map;
 	var infowindow;
-
 	var request;
 	var services;
 	var markers = [];
@@ -33,12 +41,13 @@ $( document).on("page:change ready ajax:success", function() {
 		console.log('*****************test')
 	})
 
-	var query = $('#searcher').text();
+	query = $('#searcher').text();
 	if (query == null || query == "") {
 		query = 'restaurant'
-	}else {
-		initialize();
-	};
+	}
+	console.log("QUERY IS: " + query)
+	initialize();
+
 	// alert(query);
 
 
@@ -46,16 +55,16 @@ $( document).on("page:change ready ajax:success", function() {
 		var center = new google.maps.LatLng(39.9500, -75.1667);
 		map = new google.maps.Map(document.getElementById('map'),{
 			center: center,
-			zoom: 14
+			zoom: 13
 		});
 		request = {
 			location: center,
 		// this is in meters about 2.5 miles
-		radius: 4047,
-		types: [query]
+		radius: 2047,
+		keyword: query
 	};
 
-	infowindow = new google.maps.InfoWindow({ content: 'TEST'});
+	infowindow = new google.maps.InfoWindow();
 	service = new google.maps.places.PlacesService(map);
 
 	service.nearbySearch(request, callback);
@@ -66,21 +75,31 @@ $( document).on("page:change ready ajax:success", function() {
 
 		var request = {
 			location: event.latLng,
-			radius: 4047,
-			query: [query]
+			radius: 2047,
+			types: [query]
 		};
 		service.nearbySearch(request, callback);
 	})
 }
 
 function callback(results, status){
+	if (results.length <= 0) {
+		$('#thing').html("<h3> No Results :(</h3>");
+
+	} else{
+		$('#thing').html("");
+
+	};
+
 	if (status == google.maps.places.PlacesServiceStatus.OK){
 		for (var i = 0; i < results.length; i++){
 			markers.push(createMarker(results[i]));
+			place = results[i];
+			$('#thing').prepend("<h3>"+ place.name +", "+ "Rated" +" "+ place.rating + " " + "</h3>")
+
 		}
 	}
 }
-
 
 function createMarker(place){
 	var placeLoc = place.geometry.location;
@@ -88,6 +107,7 @@ function createMarker(place){
 		map: map,
 		position: place.geometry.location
 	});
+
 
 // this is adding the information to the information card 
 google.maps.event.addListener(marker, 'click', function(){
@@ -100,13 +120,33 @@ google.maps.event.addListener(marker, 'click', function(){
 	popup += '<br/>'
 	popup += place.rating + ' Rating'
 	popup += '<br/>'
-	popup += '<a href="#">Add me</a>'
+	popup += '<button id="addme">Add me</button>'
 	popup += '<br/>'
+
+	
+
 
 // this is calling the popup above for the infowindow
 infowindow.setContent(popup);
 console.log(place)
+
+
 infowindow.open(map, this);
+// add place to favorites list
+$("#addme").on('click',function() {
+	console.log("HELLOOOOOO SETH")	
+	$.ajax({
+		type: "POST",     
+		url: "/places",     
+		data: {name: place.name, location: place.vicinity, google_id: place.place_id, lat: place.geometry.location.lat(), lng: place.geometry.location.lng()},
+		success: function (d) {         
+			console.log('data returned is: GOOD');     
+		},
+		error: function(data){
+			console.log("NOT WORKING: "+ data);
+		} 
+	})
+});
 });
 return marker;
 }
@@ -119,75 +159,6 @@ function clearResults(markers){
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
-	// this is the autocomplete code for google places
-
-	var input = /** @type {!HTMLInputElement} */(
-		document.getElementById('pac-input'));
-
-	var types = document.getElementById('type-selector');
-	map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-	map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
-
-
-	var autocomplete = new google.maps.places.Autocomplete(input);
-	autocomplete.bindTo('bounds', map);
-
-	autocomplete.addListener('place_changed', function() {
-		infowindow.close();
-		marker.setVisible(false);
-		var place = autocomplete.getPlace();
-		if (!place.geometry) {
-			window.alert("Autocomplete's returned place contains no geometry");
-			return;
-		}
-
-	    // If the place has a geometry, then present it on a map.
-	    if (place.geometry.viewport) {
-	    	map.fitBounds(place.geometry.viewport);
-	    } else {
-	    	map.setCenter(place.geometry.location);
-	      map.setZoom(17);  // Why 17? Because it looks good.
-	  }
-	  marker.setIcon(/** @type {google.maps.Icon} */({
-	  	url: place.icon,
-	  	size: new google.maps.Size(71, 71),
-	  	origin: new google.maps.Point(0, 0),
-	  	anchor: new google.maps.Point(17, 34),
-	  	scaledSize: new google.maps.Size(35, 35)
-	  }));
-	  marker.setPosition(place.geometry.location);
-	  marker.setVisible(true);
-
-	  var address = '';
-	  if (place.address_components) {
-	  	address = [
-	  	(place.address_components[0] && place.address_components[0].short_name || ''),
-	  	(place.address_components[1] && place.address_components[1].short_name || ''),
-	  	(place.address_components[2] && place.address_components[2].short_name || '')
-	  	].join(' ');
-	  }
-
-	  infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-	  infowindow.open(map, marker);
-	});
-
-  // Sets a listener on a radio button to change the filter type on Places
-  // Autocomplete.
-  function setupClickListener(id, types) {
-  	var radioButton = document.getElementById(id);
-  	radioButton.addEventListener('click', function() {
-  		autocomplete.setTypes(types);
-  	});
-  }
-
-  setupClickListener('changetype-all', []);
-  setupClickListener('changetype-address', ['address']);
-  setupClickListener('changetype-establishment', ['establishment']);
-  setupClickListener('changetype-geocode', ['geocode']);
-
 
 });
-
-
-
 

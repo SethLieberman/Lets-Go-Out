@@ -1,56 +1,71 @@
 
-<h1>Hello <%= "Welcome to #{@group.title}" %></h1>
 
-<!-- creates a new post -->
-<% if @current_user == @user %>
-<%= content_tag :div, id: "postform" do %>
-		
-			<%= form_for Post.new, url: user_group_posts_path(@current_user.id, @group.id), html: {method: :post} do |f| %>
+	<%= content_tag :div, class:"group-places" do %>
+		<h1 class="page-header">Hello <%= "Welcome to #{@group.title}" %></h1>
+			<%= content_tag :div, class:"friends-group" do %>
+	
+				<h2>Friends in the group</h2>
+					<% @group.users.each do |u| %>
+						|<%= u.username %>|
+						 <!-- link_to "delete", leave_group_path(user_id: u.id), {:method => :delete} %> -->
+					<%end%>
+			<%end%>
 
-			<!-- title of post -->
-			<%= content_tag :div, id: "title" do %>
-				<%= f.text_field :title,required: true, placeholder: "title", id: "title-input", class: "post-input" %>
-				<% end %>
-
-				<!-- content of post -->
-				<%= content_tag :div, id: "content" do %>
-				<%= f.text_area :content, required: true, placeholder: "content", id: "content-input", class: "post-input" %>
-
-				<%= f.submit :Post, id: "post-submit" %>
-				<% end %>
+		<!-- shows places that user adds to group -->
+			<hr>
+		<%= content_tag :div, class:"place-container" do %>
+			<% @group.places.each do |place| %>
+				<%= content_tag :div, class:"group-user-places" do %>
+					<div><%= place.placename%></div>
+						<%= place.location %>
+				<% end%>
 			<% end %>
 		<% end %>
-<!-- Display the posts -->
+	<% end %>
 
-	<% @posts.each do |post| %>
-		
-			<%= content_tag :div, class: "post-card" do %>
-				<%= content_tag :p, "#{post.title} | #{post.id}"%>
-				<%= content_tag :p, "#{post.content}" %>
-				<%= content_tag :p, "posted by #{post.user.username} and created #{distance_of_time_in_words(post.created_at, Time.now)} ago" %>
-				
-					<%= link_to "delete", user_group_post_path(@current_user.id, @group.id ,post.id), {:method => :delete} %>
-				
+	<!-- creates a new post -->
+	<% if @current_user == @user %>
+		<%= content_tag :div, id: "post-container" do %>
+			<%= content_tag :div, id: "postform" do %>
 
-	
-	
-		<!-- form for user to comment on posts -->
-		<hr>
-	<%= form_for Comment.new, url: user_group_post_comments_path(@current_user.id, @group.id, post.id), html: {method: :post} do |f| %>
-		<%=f.label :comment %>
-		<%=f.text_area :content, id: "content-input", required: true %>
-		<%=f.submit :Post, id: "post-submit" %>
+				<%= form_for Post.new, url: user_group_posts_path(@current_user.id, @group.id), html: {method: :post} do |f| %>
 
-		
-		<!-- displaying comments -->
-				
-				<% post.comments.each do |comment| %>
-					<%= content_tag :p, "#{comment.content}" %>
-					<%= content_tag :p, "comment by #{comment.user.username} and created #{distance_of_time_in_words(comment.created_at, Time.now)} ago" %>
+						<!-- title of post -->
+					<%= content_tag :div, id: "post" do %>
 
-					<%= link_to "delete", user_group_post_comment_path(@current_user.id, @group.id ,post.id, comment.id), {:method => :delete} %>
-				<% end %>
+
+						<!-- content of post -->
+						<%= content_tag :div, id: "content" do %>
+							<%= f.text_area :content, required: true, placeholder: "Talk to me!", class: "post-input" %>
+									<div>
+											<%= f.submit :Post, id: "post-submit" %>
+									</div>
+						<% end %>
 			<% end %>
-		<% end %>			
-<% end %>
-<% end %>
+		<% end %>
+	<% end %>
+				<!-- Display the posts -->
+
+						<% @posts.each do |post| %>
+
+							<%= content_tag :div, class: "post-card" do %>
+								<%= content_tag :p, "#{post.title}"%>
+									<%= content_tag :p, "#{post.content}" %>
+										<%= content_tag :p, "posted by #{post.user.username} #{distance_of_time_in_words(post.created_at, Time.now)} ago" %>
+
+											<%= link_to "delete", user_group_post_path(@current_user.id, @group.id ,post.id), {:method => :delete} %>
+
+														<hr>
+
+												<!-- displaying comments -->
+
+											<% post.comments.each do |comment| %>
+												<%= content_tag :p, "#{comment.content}" %>
+													<%= content_tag :p, "comment by #{comment.user.username} #{distance_of_time_in_words(comment.created_at, Time.now)} ago" %>
+
+															<%= link_to "delete", user_group_post_comment_path(@current_user.id, @group.id ,post.id, comment.id), {:method => :delete} %>
+											<% end %>
+										<% end %>
+									<% end %>
+								<% end %>
+							<% end %>

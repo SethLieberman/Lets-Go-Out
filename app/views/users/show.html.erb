@@ -1,7 +1,68 @@
 
+<% if @current_user == @user %>
 
+	<!-- edit users profile -->
+		<%= content_tag :div, class: "editp" do %>
+		<%= content_tag :h1, "Edit Profile", class: "ep" %>
+		<%= form_for @current_user, url: user_path(@current_user.id), html: {method: :put} do |f| %>
+		<div><%=f.label :Email%></div>
+		<div><%=f.text_field :email, required: true %></div>
+		<div><%=f.label :Last_Name%></div>
+		<div><%=f.text_field :lname, required: true %></div>
+		<div><%=f.label :First_Name%></div>
+		<div><%=f.text_field :fname, required: true %></div>
+		<div><%=f.label :username%></div>
+		<div><%=f.text_field :username, maxlength: 10, required: true %></div>
+		<div><%=f.label :zipcode%></div>
+		<div><%=f.text_field :zipcode, required: true %></div>
+		<div><%= f.file_field :avatar %></div>
+		<div><%=f.submit :"Update" %></div>
+		<% end %> 
+		<% end %>
+	<!-- display users information -->
+	
+	<%= content_tag :div, class:"profile-info"  do %>
 
- <!-- shows other user's name -->
+		<%= image_tag @current_user.avatar.url(:medium) %>
+		<div><%= @current_user.username %></div>	
+		<div><%= @current_user.fname %>
+		<%= @current_user.lname %></div>
+		
+		<button class="edit-button">Edit</button>
+		<% end %>
+	<% end %>
+		<%= content_tag :div, class:"content" do %>
+		<% if @current_user == @user %>
+		<h1 class="page-header">My List</h1>
+		<% end %>
+
+<!-- shows other user's name -->
+
  <% if @current_user != @user%>
-	<%= content_tag :p, "#{@user.username}'s Page", class:"userpage" %>
+	<%= content_tag :p, "#{@user.username}'s Places", class:"userpage" %>
  <% end %>
+ <!-- show the user's places -->
+
+
+<% @user.places.each do |p| %>
+<%= content_tag :div, class:"user-places" do %>
+	<div>
+			<%= p.placename %>
+			<div><%= p.location %></div>
+			<% if @current_user == @user %>
+				<%= link_to "Add to Group", add_to_group_path(place_id: p.id) %>
+				<hr>
+		<div class="delete">
+			<%= link_to "(delete)", place_path(p), {:method => :delete} %>
+
+		</div>
+		<% end %>
+	</div>
+	
+	
+		
+<% end %>
+<% end %>
+<% end %>
+
+

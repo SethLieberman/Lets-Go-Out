@@ -4,6 +4,14 @@ class PlacesController < ApplicationController
 
 	def edit
 	end
+	def create
+		puts "MY PRAMS SETH ARE #{params}"
+		
+
+		p = Place.create(placename: params[:name], location: params[:location], google_place_id: params[:google_id], lat: params[:lat], lng: params[:lng] )
+		@current_user.places.push(p)
+		redirect_to root_path
+	end
 
 	def show
 
@@ -17,6 +25,7 @@ class PlacesController < ApplicationController
 
 	def follow_place
 		# when user clicks add place to user page
+
 	end
 
 	def search
@@ -25,10 +34,6 @@ class PlacesController < ApplicationController
 
 
 	def index
-		@hash = Gmaps4rails.build_markers(@users) do |user, marker|
-			marker.lat user.latitude
-			marker.lng user.longitude
-		end
 
 		puts "HASHING is #{@hash}"
 
@@ -51,5 +56,12 @@ class PlacesController < ApplicationController
 		# end
 		@results = client.search('Philadelphia', { term: @query}, sort:[2], offset:[20])
 
+	end
+
+	def destroy
+		@user = User.find(current_user)
+		@place = Place.find(params[:id])
+		@place.destroy
+		redirect_to user_path(@user.id)
 	end
 end

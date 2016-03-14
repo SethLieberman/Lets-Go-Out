@@ -4,7 +4,9 @@ class GroupsController < ApplicationController
 
 	def create
 		@group = Group.create(group_params) 
-		@current_user.groups.push
+		@current_user.shared_groups.push @group
+		@group.owner = current_user
+		@group.save
 		redirect_to user_groups_path(@current_user.id)
 	end
 
@@ -27,8 +29,9 @@ class GroupsController < ApplicationController
 	end
 
 	def index
+		@users = User.all
 		@user = User.find(params[:user_id])
-		@groups = @user.groups
+		@groups = @user.shared_groups
 	end
 
 	def destroy
@@ -38,11 +41,17 @@ class GroupsController < ApplicationController
 		redirect_to user_groups_path(@user.id, @group.id)
 	end
 
+	def leave_group
+		# @user = User.find(params[:user_id])
+		puts '***************&&&&&&&&&&&&^^^^^^^^^^^^'
+		redirect_to user_path(current_user.id)
+	end
+
 	private 
 
 	def group_params
 		group_params = params.require(:group).permit(:title)
-		group_params[:user_id] = current_user.id
+		# group_params[:user_id] = current_user.id
 		group_params
 	end
 

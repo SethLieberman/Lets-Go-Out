@@ -1,25 +1,27 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<h2>Top Places to Eat!</h2>
 
+<h2 class="page-header">Find Places To Go</h2>
+<%= content_tag :div, class:"search" do %>
 
-<%= form_tag search_path, remote: :true, method: :post do %>
+<%= form_tag search_path, remote: :true, method: :post, class:"search-bar" do %>
 <%= text_field_tag :search %>
 <%= submit_tag "SEARCH" %>
 <% end %>
-<%= link_to "Hello SETH", places_path, remote: :true %>
+<% end %>
 
+
+<!-- loads yelp display -->
 <div id="yelps">
 <%= render "yelp_places"%>
 </div>
 
-
+<!-- display google maps -->
 <div id="mapper">
 	<%= render "google_map"%>
 </div>
 
-
+<!-- list the restaurants from google API -->
+<div class="place-box">
+	<h1 class="top-results">Top Results</h1>
+<div id="thing"></div>
+</div>
 <%= render "places/users_places"%>

@@ -31,6 +31,7 @@ gem 'gmaps4rails'
 gem 'google_places'
 gem 'geocoder'
 gem 'paperclip'
+gem 'sendgrid-ruby'
 # Use Unicorn as the app server
 gem 'yelp', require: 'yelp'
 # gem 'unicorn'

@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   # layout nil
   # layout 'application', :except => :view
-
+  layout 'home'
 
   def new
     @user_signing_in = User.new
@@ -25,6 +25,7 @@ class SessionsController < ApplicationController
   		redirect_to user_path @user 
   	else
   		flash[:alert]="Login has failed"
+      puts "Login has failed" 
       redirect_to login_path
   	end
   end

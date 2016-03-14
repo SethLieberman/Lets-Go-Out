@@ -9,11 +9,10 @@
 }
 #map {
   padding: 10px 10px 10px 10px;
-  height: 600px;
-  width: 600px;
-
-  margin: 0 auto;
-  margin-top: 50px;
+  height: 500px;
+  width: 700px;
+  float: right;
+  right:20px;
   padding: 0;
 }
 
@@ -71,9 +70,27 @@
   font-weight: 300;
 }
 
-// this is for yelp
+.search{
+  margin: 0 auto;
+  width: 200px;
+  text-align: center;
+  font-size: 1.3vw;
+}
 
-.yelp{
-  width: 300px;
-  float: left;
+.place-box{
+  border:solid black 2px;
+  text-align: center;
+  width: 400px;
+  max-height: 500px;
+  overflow: scroll;
+  margin-left:20px;
+}
+
+.top-results{
+  text-decoration: underline; 
+  margin-bottom: -10px;
+}
+
+.search-bar{
+  padding:5px;
 }

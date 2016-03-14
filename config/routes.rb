@@ -15,7 +15,7 @@
   # You can have the root of your site routed with "root"
   root 'sessions#new'
 
-  get 'login' => 'sessions#new'
+  get 'login' => 'sessions#new', as: :login
   post 'search' => 'places#index', as: :search
   get 'search' => 'places#index'
   post 'post_login' => 'sessions#create', as: :login_user
@@ -24,15 +24,25 @@
   post '/newpost' => 'posts#create'
   post '/newcomment' => 'comments#create'
   post '/newgroup' => 'groups#create'
+  delete '/leavegroup' => 'groups#leave_group', as: :leave_group
+
+  # email user
+  get '/invite/:user_id/group/:id' => 'invites#invite', as: :invite_user
+  get '/invite/:id/groups' => 'invites#select_group', as: :invite_user_groups
+
+  # sending token as link to user to add to group
+  get '/accept_invite/:invite_token' => 'invites#accept_token', as: :accept_token
 
   # resources :followers, :only => [:create, :destroy]
   post '/update_follow_status' => 'users#update_follow_status', as: :update_follow_status
 
   post '/update_group_status/:id' => 'users#update_group_status', as: :update_group_status
 
-  # this should allow user to add a place to userpage
-  post 'place_path/:id' => 'places#follow_place', as: :follow_place
+# add a place to group
+  get '/add_place_group' => 'users#add_place_group', as: :add_place_group
 
+# get to add place to group page
+  get '/add_to_group' => 'users#add_to_group', as: :add_to_group
 
   # get '/user/:id/followers' => 'users#followers', as: 'followers'
   # Example of regular route:

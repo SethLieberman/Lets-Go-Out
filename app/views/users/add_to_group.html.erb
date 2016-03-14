@@ -1,0 +1,13 @@
+<!-- @user, @place, @group are variables to use -->
+
+<%= content_tag :div, class:"add-place" do %>
+<%= "Which group would you like to add #{@place.placename} to?" %>
+		
+		<% if @current_user == @user %>
+				<% @current_user.owned_groups.each do |g| %>
+					<!-- add places to your groups -->
+					<div class="add-to-group"><%= link_to "Add to #{g.title}", add_place_group_path(place_id: @place.id, group_id: g.id), html: {method: :post}, class:"g"%></div>
+			<% end %>
+		<% end %>
+<% end %>	
+

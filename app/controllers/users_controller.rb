@@ -8,8 +8,8 @@ class UsersController < ApplicationController
   	@user = User.new(user_params)
   	if @user.save
       flash[:alert]="Now you can sign in"
-  		redirect_to login_path 
-  	else
+      redirect_to login_path 
+    else
       redirect_to login_path
   		# redirect_to new_user_path
   	end
@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
     @users = User.all
     @posts = Post.all
+    @groups = @user.owned_groups
     @comments = Comment.all    
     @comments = @comments.sort_by {|comment| comment.created_at}.reverse
     @posts = @posts.sort_by {|post| post.created_at }.reverse
@@ -30,8 +31,14 @@ class UsersController < ApplicationController
   def index
     @user = current_user
     @users = User.all
-    # @posts = Post.all
-    # @comments = Comment.all
+
+  end
+
+  def update
+    current_user
+    @current_user.update_attributes(update_params) 
+    redirect_to user_path(params[:id])
+
   end
 
   def destroy
@@ -41,37 +48,47 @@ class UsersController < ApplicationController
   end
 
 # to follow users
-  def update_follow_status
-    @user_to_follow = User.find(params[:user_id])
-    if current_user.user_friends.include? @user_to_follow
-      current_user.user_friends.destroy @user_to_follow
+def update_follow_status
+  @user_to_follow = User.find(params[:user_id])
+  if current_user.user_friends.include? @user_to_follow
+    current_user.user_friends.destroy @user_to_follow
 
-    else
-      current_user.user_friends.push @user_to_follow
+  else
+    current_user.user_friends.push @user_to_follow
 
-    end
-    redirect_to users_path
   end
-
-# to add followers to groups
-
-  def update_group_status
-    @user_to_group = User.find(params[:id])
-    current_user.groups.include? @user_to_group
-      # current_user.groups.destroy @user_to_group
-
-    # else
-    #   current_user.user_groups.push @user_to_group
-
-    # end
-    redirect_to users_path current_user
-  end
+  redirect_to user_groups_path(current_user)
+end
 
 
-  private
-  def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :lname, :fname, :username, :zipcode, :avatar)
-  end
-  
+# add a place to a group
+def add_place_group
+  @place = Place.find(params[:place_id])
+  @group = Group.find(params[:group_id])
+  puts "PLACE IS #{@place}"
+  puts "GROUP IS #{@group}"
+  @group.places.push(@place)
+  puts "******************$$$$$$$$"
+  redirect_to user_group_path(current_user, @group.id)
+end
+
+# add_to_group page that lists the groups user can add the restaurants to
+def add_to_group
+  @user = current_user
+  @groups = @user.shared_groups
+  # this list all the places
+  # @place = Place.all
+  @place = Place.find(params[:place_id])
+end 
+
+private
+def user_params
+  params.require(:user).permit(:email, :password, :password_confirmation, :lname, :fname, :username, :zipcode, :avatar)
+end
+
+def update_params
+  params.require(:user).permit(:username, :email, :zipcode, :lname, :fname, :zipcode, :avatar)
+end
+
 end
 

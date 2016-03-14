@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224202835) do
+ActiveRecord::Schema.define(version: 20160303164612) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username"
@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 20160224202835) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "title"
-    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "owner_id"
@@ -67,6 +66,10 @@ ActiveRecord::Schema.define(version: 20160224202835) do
   create_table "invites", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.string   "token"
+    t.integer  "states"
   end
 
   create_table "meetup_places", force: :cascade do |t|
@@ -80,8 +83,12 @@ ActiveRecord::Schema.define(version: 20160224202835) do
     t.string   "placename"
     t.integer  "group_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "google_place_id"
+    t.string   "location"
+    t.float    "lat"
+    t.float    "lng"
   end
 
   create_table "posts", force: :cascade do |t|

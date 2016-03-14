@@ -1,27 +1,80 @@
+<%= content_tag :div, id: "group" do %>
+	<h1 class="page-header"><%= "#{@user.username}'s Group Page" %></h1>
 
-<h1><%= "#{@user.username}'s Group Page" %></h1>
+	
+		<% if @current_user == @user %>
+		<!-- form for creating new group -->
+			<%= form_for Group.new, url: '/newgroup', html: {method: :post} do |f| %>
+					<!-- creating of group -->
+						<%= content_tag :div, id: "create-group" do %>
+							<%= content_tag :p, "Create a Group", class: "create" %>
+						
+								<%= f.text_field :title,required: true, placeholder: "title", id: "title-group", class: "group-title" %>
+								<%= f.submit :Create, id: "group-submit" %>
+								<% end %>
+						<% end %>
+			<% end %>
+		
+	<!-- List your groups -->
+	<%= content_tag :div, id: "user-group" do %>	
+			<% @current_user.owned_groups.each do |g| %>
+				<span class="group-list"><%= link_to "#{g.title}", user_group_path(@user.id, g.id)%>
+					<% if @current_user == @user %>
 
+						<span class="delete-group"><%= link_to "(Delete Group)", user_group_path(@current_user.id, g.id), {:method => :delete} %></span>
+					<% end %>
+				</span>
+			<% end %>		
+	
+			<% @current_user.shared_groups.each do |g| %>
+				<% if g.owner != @current_user %>
 
-<% if @current_user == @user %>
-<!-- form for creating new group -->
-<%= form_for Group.new, url: '/newgroup', html: {method: :post} do |f| %>
-			<!-- creating of group -->
-			<%= content_tag :div, id: "create-group" do %>
-				<%= content_tag :p, "Create a Group" %>
+				<div class="group-list"><%= link_to "#{g.title}", user_group_path(@user.id, g.id)%>
+					
+				</div>
+			<% end %>
+			<% end %>
 			
-					<%= f.text_field :title,required: true, placeholder: "title", id: "title-group", class: "" %>
-					<%= f.submit :Submit, id: "group-submit" %>
+	<% end %>
+		<hr>	
+		<%= content_tag :div, class: "your-friends" do %>
+		
+					<h3 class="page-header">Your Friends</h3>
+				
+				<% @user.user_friends.each do |u| %>
+						<%= content_tag :div, class: "e-users" do %>
+							<!-- avatar for each user -->
+							<div><%= image_tag u.avatar.url(:thumb) %></div>
+
+							<!-- links to othe user's page -->
+							<div><%= link_to"#{u.username}", user_path(u.id)%></div>
+							<div><%= link_to "Invite to Group", invite_user_groups_path(u.id) %></div>
+					
 					<% end %>
 				<% end %>
-				<% end %>
-		
-<!-- List your groups -->
+		<% end %>
+		<hr>
+		<h2 class="page-header">All Of The Users</h2>
+	<%= content_tag :div, class: "all-users" do %>
 	
-		<% @groups.each do |g| %>
-			<div><%= link_to "#{g.title}", user_group_path(@user.id, g.id)%>
-				<% if @current_user == @user %>
+			<!-- displaying all users -->
+		
+			<% @users.each do |u| %>
+				<% if u!= @user%>
+				<span class="uname"><%= u.username %></span>
 
-			<%= link_to "Delete Group", user_group_path(@current_user.id, g.id), {:method => :delete} %>
+				<% if @user.user_friends.include? u%>
+					<%= link_to "(Unfollow)", update_follow_status_path({user_id: u.id}), :method => :post%>
+
+				<% else %>
+					<%= link_to "(Follow)", update_follow_status_path({user_id: u.id }), :method => :post%>
+
 				<% end %>
-			</div>
-	<% end %>
+				<% end %>
+				
+	
+	<% end %>		
+			<% end %>
+
+
+<% end %>	

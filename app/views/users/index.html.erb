@@ -1,40 +1,14 @@
 
 <%= content_tag :div, class: "show-users" do %>
 
-	<%= content_tag :div, class: "all-users" do %>
-	<h2>All of the Users</h2>
-			<!-- displaying all users -->
-			
-			<% @users.each do |u| %>
-				<% if u!= @user%>
-				<div><%= u.username %></div>
-
-				<% if @user.user_friends.include? u%>
-					<%= link_to "Unfollow", update_follow_status_path({user_id: u.id}), :method => :post%>
-
-				<% else %>
-					<%= link_to "Follow", update_follow_status_path({user_id: u.id}), :method => :post%>
-
-				<% end %>
-				<% end %>
-
-			<!-- to add followers to group -->
-
-				
-					 <!-- link_to "Leave Group", update_group_status_path(:id => u.id), :method => :post -->
-
-				
-	
-	<% end %>		
-			<% end %>
 
 		<!-- display the people you follow -->
 	<%= content_tag :div, class: "your-users" do %>
 	
-			<h3>People you are following</h3>
+			<p class="page-header">People You Are Following</h3>
 			
 				<% @user.user_friends.each do |u| %>
-					<%= content_tag :div, class: "eusers" do %>
+					<%= content_tag :div, class: "e-users" do %>
 				<!-- avatar for each user -->
 				<div><%= image_tag u.avatar.url(:thumb) %></div>
 
@@ -44,3 +18,26 @@
 			<% end %>
 	<% end %>
 <% end %>
+<hr>
+	<h2 class="page-header">All Of The Users</h2>
+	<%= content_tag :div, class: "all-users" do %>
+	
+			<!-- displaying all users -->
+		
+			<% @users.each do |u| %>
+				<% if u!= @user%>
+				<span class="uname"><%= u.username %></span>
+
+				<% if @user.user_friends.include? u%>
+					<%= link_to "(Unfollow)", update_follow_status_path({user_id: u.id}), :method => :post%>
+
+				<% else %>
+					<%= link_to "(Follow)", update_follow_status_path({user_id: u.id}), :method => :post%>
+
+				<% end %>
+				<% end %>
+				
+	
+	<% end %>		
+			<% end %>
+

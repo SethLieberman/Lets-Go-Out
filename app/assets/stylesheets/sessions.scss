@@ -7,6 +7,57 @@
 	text-align: center;
 	margin: 0 auto;
 	margin-top:100px;
-	width:400px;
-	border: solid black 2px;
+	width:400px;	
+}
+
+#lets-go{
+	font-size:7vw;
+	font-family: 'Rum Raisin', sans-serif;
+	text-align:center;	
+	margin-bottom:-100px;
+	margin-top:-75px;
+	color:white;
+}
+
+.in-landing{
+	border-style: solid;
+	border-width: 10px;
+	border-color: #cd2c4d white #cd2c4d white;
+}
+
+.in-landing:hover{
+	border-color: white #cd2c4d white #cd2c4d;
+
+	// transform: rotate(90deg);
+}
+
+.log-in{
+	color:white;
+}
+
+.sign-up{
+	color:white;
+}
+
+#bg{
+	position: fixed;
+	z-index:-1;
+	background-repeat: no-repeat;
+	width:100%;
+	background-position: center;
+}
+
+.buffer{
+	margin-top: 100px;
+}
+
+.l-input{
+	font-size:15px;
+	text-align:center;
+	color:#cd2c4d;
+	margin-bottom:3px;
+}
+
+.a-input{
+	color:white;
 }
