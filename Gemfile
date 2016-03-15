@@ -32,6 +32,7 @@ gem 'google_places'
 gem 'geocoder'
 gem 'paperclip'
 gem 'sendgrid-ruby'
+gem 'passenger'
 # Use Unicorn as the app server
 gem 'yelp', require: 'yelp'
 # gem 'unicorn'
