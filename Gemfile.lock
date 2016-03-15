@@ -107,6 +107,9 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
+    passenger (5.0.26)
+      rack
+      rake (>= 0.8.1)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -208,6 +211,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   paperclip
+  passenger
   pry
   rails (= 4.2.5)
   sass-rails (~> 5.0)
