@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
          m.to = @user.email
          m.from = current_user.email
          m.subject = 'Invite to Group'   
-         m.text = "Your token is http://localhost:3000/accept_invite/#{token}, you were invited by #{current_user.username} to #{@group.title}"
+         m.text = "Your token is http://letsgoout.helloseth.com/accept_invite/#{token}, you were invited by #{current_user.username} to #{@group.title}"
         
        end
 
