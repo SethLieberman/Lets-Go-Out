@@ -1,6 +1,6 @@
 == README
 
-Lets Go Out is a Rails App that lets you create a wish list of places that you would like to go to.  It uses Google Places API to import the specific places from Google Maps.  You can create groups and add friends and places to you groups to organize where you would like to go.
+Lets Go Out is a Rails App that lets you create a wish list of places that you would like to go to.  It uses Google Places API to import the specific places from Google Maps.  You can create groups and add friends and places to your groups to organize where you would like to go.
 
 HTML, CSS, JavaScript, Ruby, Rails, and Google Places API were used to build this application.
 
