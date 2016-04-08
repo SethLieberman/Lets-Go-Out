@@ -116,3 +116,13 @@
  	background-size: cover;
  }
 
+@media only screen and (max-width: 400px){
+	.nav{
+		font-size: 4vw;
+		padding-left:3px;
+ 		padding-right: 3px;
+	}
+	#navbar{
+		height: 100px;
+	}
+}
