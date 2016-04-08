@@ -113,6 +113,6 @@
  	/*z-index:-1;*/
  	background-repeat: no-repeat;
  	width:100%;
- 	/*background-position: cover;*/
- 	background-size: 100%;
+ 	background-size: cover;
  }
+
